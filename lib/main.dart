@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:save_the_bilby_fund/repository/authentication_repository/authentication_repository.dart';
-import 'features/admin/screens/uploadScreen/upload_screen.dart';
-import 'features/authentications/screens/SettingsSecreen/User_Profile.dart';
+import 'features/authentications/screens/SplashScreen/splash_screen.dart';
 import 'features/authentications/screens/login/login_screen.dart';
 import 'firebase_options.dart';
 import 'package:get/get.dart';
@@ -12,27 +11,23 @@ import 'package:get/get.dart';
 
 //Function to initialize Firebase
 Future<void> initializeDefault() async {
-  FirebaseApp app = await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  print('Initialized default app $app');
   //to Check Platform
   if (Platform.isAndroid) {
 // Android-specific code
-    print("Running on Android");
+    debugPrint("Running on Android");
   } else if (Platform.isIOS) {
 // iOS-specific code
-    print("Running on iOS");
+    debugPrint("Running on iOS");
   }
 }
 main() async {
   print("main started");
 
   WidgetsFlutterBinding.ensureInitialized();
-  initializeDefault();
-  // Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // ).then((value) => Get.put(AuthenticationRepository()));
+  // // initializeDefault();
+  Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  ).then((value) => Get.put(AuthenticationRepository()));
 
   print('Initialized default app');
   //to Check Platform
@@ -61,7 +56,7 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
-      home: UploadScreen(),
+      home: LoginScreen(),
     );
   }
 }

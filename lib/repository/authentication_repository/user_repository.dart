@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,8 +10,8 @@ class UserRepository extends GetxController{
 
   final _db = FirebaseDatabase.instance;
 
-  createUser(UserModel user)async{
-    await _db.ref("Users").child(user.phoneNo).set(user.toJson()).whenComplete(
+  createUser(UserModel user, String Uid)async{
+    await _db.ref("Users").child(Uid).set(user.toJson()).whenComplete(
             () { Get.snackbar("Success", "Your account has been created.",
               snackPosition: SnackPosition.BOTTOM,
               backgroundColor: Colors.green.withOpacity(0.1),
@@ -27,5 +28,16 @@ class UserRepository extends GetxController{
   }
 
 
+  Future<Object?> getUserDetails(String Uid) async{
+    final ref = FirebaseDatabase.instance.ref();
+    final snapshot = await ref.child('Users').get();
+    if (snapshot.exists) {
+      final userdata = snapshot.value;
+    } else {
+      print('No data available.');
+    }
+
+   
+  }
 
 }

@@ -1,4 +1,4 @@
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:save_the_bilby_fund/features/authentications/controllers/signup_controller.dart';
@@ -9,14 +9,18 @@ import '../../../../constants/text_strings.dart';
 
 
 class SignUpFormWidget extends StatelessWidget {
+
   const SignUpFormWidget({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+
     final controller = Get.put(SignUpController());
     final _formkey = GlobalKey<FormState>();
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: tFormHeight - 10),
       child: Form(
@@ -73,7 +77,7 @@ class SignUpFormWidget extends StatelessWidget {
 
               validator: (value) {
                 bool _isEmailValid = RegExp(
-                    r'^(?:[+0][1-9])?[0-9]{10,12}$')
+                    r'^(?:[+0][1-9])?[0-9]{8,15}$')
                     .hasMatch(value!);
                 if (!_isEmailValid) {
                   return 'Invalid phone number';
@@ -96,8 +100,8 @@ class SignUpFormWidget extends StatelessWidget {
                 if (value == null || value.trim().isEmpty) {
                   return 'This field is required';
                 }
-                if (value.trim().length < 8) {
-                  return 'Password must be at least 8 characters in length';
+                if (value.trim().length < 6) {
+                  return 'Password must be at least 6 characters in length';
                 }
                 // Return null if the entered password is valid
                 return null;
@@ -122,14 +126,26 @@ class SignUpFormWidget extends StatelessWidget {
                 onPressed: () {
                   if(_formkey.currentState!.validate()){
 
-                    // SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
 
-                    final user = UserModel(email: controller.email.text.trim(),
-                        password: controller.password.text.trim(),
-                        fullname: controller.fullName.text.trim(),
-                        phoneNo: controller.phoneNo.text.trim());
-                    SignUpController.instance.createUser(user);
+                    SignUpController.instance.signUp(
+                        controller.fullName.text.trim(),
+                        controller.email.text.trim(),
+                        controller.password.text.trim(),
+                        controller.phoneNo.text.trim()
 
+
+                    );
+
+
+
+                    // final user = UserModel(
+                    //     email: controller.email.text.trim(),
+                    //     password: controller.password.text.trim(),
+                    //     fullname: controller.fullName.text.trim(),
+                    //     phoneNo: controller.phoneNo.text.trim()
+                    // );
+                    //
+                    // SignUpController.instance.createUser(user).toString();
 
                   }
                 },

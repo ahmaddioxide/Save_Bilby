@@ -57,6 +57,10 @@ dependencies:
   #
   url_launcher:
 
+  change_notifier_builder: ^1.1.2
+  fluttertoast: ^8.1.2
+
+
 
 
 
