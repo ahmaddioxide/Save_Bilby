@@ -122,6 +122,7 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
                     const SizedBox(height: tFormHeight - 20),
                     TextFormField(
                       initialValue: map['password'],
+                      obscureText: true,
                       enableInteractiveSelection: false,
                       focusNode: new AlwaysDisabledFocusNode(),
                       validator: (value) {
