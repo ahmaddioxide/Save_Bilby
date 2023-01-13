@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.atinitu.save_the_bilby_fund">
    <application
-        android:label="save_the_bilby_fund"
+        android:label="Save Bilby"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
