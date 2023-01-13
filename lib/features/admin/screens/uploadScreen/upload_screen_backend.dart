@@ -49,11 +49,7 @@ Future SelectAndUploadImages() async {
               "dateUploaded": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
               "imageURL": "${imageURL}",
               "isCategorized":"false",
-              "numberOfUserCategorized":"0",
               "categoryId":"unknown",
-              "dateCategorized":"${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
-              "isCritical":"false"
-
             });
           }).whenComplete(() => () {
                     debugPrint(
