@@ -20,7 +20,7 @@ AppBar customAppBar(String tit, IconData? iconi) {
     ),
 
     bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(140.0),
+        preferredSize: const Size.fromHeight(110.0),
         child: Container(
           padding: const EdgeInsets.only(bottom: 15),
           child: Column(
@@ -28,20 +28,22 @@ AppBar customAppBar(String tit, IconData? iconi) {
               Row(
                 children: [
                   SizedBox(width: 15,),
-                  SizedBox.fromSize(
-                    size: Size(56, 56),
-                    child: ClipOval(
-                      child: Material(
-                        color: tPrimaryColor,
-                        child: InkWell(
-                          splashColor: Colors.white,
-                          onTap: () {  Get.back();
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(Icons.arrow_back, color: Colors.white, size: 30,),
-                            ],
+                  Center(
+                    child: SizedBox.fromSize(
+                      size: Size(56, 56),
+                      child: ClipOval(
+                        child: Material(
+                          color: tPrimaryColor,
+                          child: InkWell(
+                            splashColor: Colors.white,
+                            onTap: () {  Get.back();
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(Icons.arrow_back, color: Colors.white, size: 30,),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -50,7 +52,7 @@ AppBar customAppBar(String tit, IconData? iconi) {
 
                   SizedBox(width: 50,),
 
-                  Image(image: AssetImage("assets/images/whitebilby.png"), height: 120),
+                  Image(image: AssetImage("assets/images/whitebilby.png"), height: 100),
                 ],
               ),
 
@@ -62,7 +64,7 @@ AppBar customAppBar(String tit, IconData? iconi) {
                     Text(
                       tit,
                       style: TextStyle(
-                          fontSize: 28,
+                          fontSize: 26,
                           fontWeight: FontWeight.w700,
                           color: Colors.white),
                     ),
