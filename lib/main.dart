@@ -24,10 +24,11 @@ main() async {
   print("main started");
 
   WidgetsFlutterBinding.ensureInitialized();
-  // // initializeDefault();
-  Firebase.initializeApp(
+  // initializeDefault();
+  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  ).then((value) => Get.put(AuthenticationRepository()));
+  );
+      // .then((value) => Get.put(AuthenticationRepository()));
 
   print('Initialized default app');
   //to Check Platform
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
-      home: LoginScreen(),
+      home: Splash(),
     );
   }
 }

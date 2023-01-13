@@ -47,10 +47,8 @@ class SignUpController extends GetxController {
           'ImageCategorized': imgCategorize,
         });
 
-        if(User != null){
           Get.offAll(() => const Dash());
 
-        }
         // else{
         //   Get.to(() => const SignUpScreen());
         // }
