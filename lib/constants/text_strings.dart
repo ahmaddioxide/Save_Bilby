@@ -11,12 +11,12 @@ const String tSignup = "Signup";
 const String tPhoneNo = "Phone No";
 const String tPassword = "Password";
 const String tFullName = "Full Name";
-const String tForgetPassword = "Forget Password";
+const String tForgetPassword = "Forget Password?";
 const String tSignInWithGoogle = "Sign-In with Google";
 
 //Login Screen
 const String tRememberMe = "Remember Me?";
-const String tDontHaveAnAccount = "Don't have an Account? ";
+const String tDontHaveAnAccount = "Don't have an account? ";
 
 
 // -- Sign Up Screen Text
@@ -35,7 +35,7 @@ const String tResetViaPhone = "Reset via Phone Verification";
 const String tForgetPhoneSubTitle = "Enter your registered Phone No to receive OTP";
 
 // -- Forget Password Via E-Mail - Text
-const String tForgetMailSubTitle = "Enter your registered E-Mail to receive OTP";
+const String tForgetMailSubTitle = "Enter your registered EMail to receive OTP";
 
 
 
