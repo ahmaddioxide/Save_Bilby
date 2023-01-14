@@ -56,13 +56,13 @@ class SplashScreenState extends State<Splash> {
 
             SizedBox(height: 50,),
 
-            Text(
-              "Save the Bilby Funds",
-              style: TextStyle(
-                  fontSize: 23,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white),
-            ),
+            // Text(
+            //   "Save the Bilby Funds",
+            //   style: TextStyle(
+            //       fontSize: 23,
+            //       fontWeight: FontWeight.w400,
+            //       color: Colors.white),
+            // ),
           ],
         ),
 
