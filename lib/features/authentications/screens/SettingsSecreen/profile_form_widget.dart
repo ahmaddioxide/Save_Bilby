@@ -77,6 +77,28 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
                     ),
                     const SizedBox(height: tFormHeight - 20),
                     TextFormField(
+                      // initialValue: map['Phone'],
+                      controller: phoneController,
+
+                      validator: (value) {
+                        bool _isEmailValid =
+                        RegExp(r'^(?:[+0][1-9])?[0-9]{8,15}$')
+                            .hasMatch(value!);
+                        if (!_isEmailValid) {
+                          return 'Invalid phone number';
+                        }
+                        // return null;
+                      },
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.phone),
+                        labelText: tPhoneNo,
+                        hintText: tPhoneNo,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                      ),
+                    ),
+                    const SizedBox(height: tFormHeight - 20),
+                    TextFormField(
                       initialValue: map['email'],
                       enableInteractiveSelection: false,
                       focusNode: new AlwaysDisabledFocusNode(),
@@ -98,51 +120,30 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
                       ),
                     ),
                     const SizedBox(height: tFormHeight - 20),
-                    TextFormField(
-                      // initialValue: map['Phone'],
-                      controller: phoneController,
 
-                      validator: (value) {
-                        bool _isEmailValid =
-                            RegExp(r'^(?:[+0][1-9])?[0-9]{8,15}$')
-                                .hasMatch(value!);
-                        if (!_isEmailValid) {
-                          return 'Invalid phone number';
-                        }
-                        // return null;
-                      },
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.phone),
-                        labelText: tPhoneNo,
-                        hintText: tPhoneNo,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                      ),
-                    ),
-                    const SizedBox(height: tFormHeight - 20),
-                    TextFormField(
-                      initialValue: map['password'],
-                      enableInteractiveSelection: false,
-                      focusNode: new AlwaysDisabledFocusNode(),
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'This field is required';
-                        }
-                        if (value.trim().length < 6) {
-                          return 'Password must be at least 6 characters in length';
-                        }
-
-                        // Return null if the entered password is valid
-                        // return null;
-                      },
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.fingerprint),
-                        labelText: tPassword,
-                        hintText: tPassword,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                      ),
-                    ),
+                    // TextFormField(
+                    //   initialValue: map['password'],
+                    //   enableInteractiveSelection: false,
+                    //   focusNode: new AlwaysDisabledFocusNode(),
+                    //   validator: (value) {
+                    //     if (value == null || value.trim().isEmpty) {
+                    //       return 'This field is required';
+                    //     }
+                    //     if (value.trim().length < 6) {
+                    //       return 'Password must be at least 6 characters in length';
+                    //     }
+                    //
+                    //     // Return null if the entered password is valid
+                    //     // return null;
+                    //   },
+                    //   decoration: InputDecoration(
+                    //     prefixIcon: Icon(Icons.fingerprint),
+                    //     labelText: tPassword,
+                    //     hintText: tPassword,
+                    //     border: OutlineInputBorder(
+                    //         borderRadius: BorderRadius.circular(20)),
+                    //   ),
+                    // ),
                     const SizedBox(height: tFormHeight - 10),
                     Text(
                       "Reward Points",

@@ -33,11 +33,11 @@ class SplashScreenState extends State<Splash> {
     // Firebase.initializeApp().then((value) => Get.put(AuthenticationRepository()));
     if(user != null){
       SessionController().userid = user.uid.toString();
-      Timer(Duration(seconds: 5), ()=> Get.offAll(() =>  Dash()));
+      Timer(Duration(seconds: 3), ()=> Get.offAll(() =>  Dash()));
 
     }else{
       // print("hello");
-      Timer(Duration(seconds: 5), ()=> Get.offAll(() =>  LoginScreen()));
+      Timer(Duration(seconds: 3), ()=> Get.offAll(() =>  LoginScreen()));
 
     }
 
@@ -60,9 +60,10 @@ class SplashScreenState extends State<Splash> {
               "Save the Bilby Funds",
               style: TextStyle(
                   fontSize: 23,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w400,
                   color: Colors.white),
-            ),          ],
+            ),
+          ],
         ),
 
 

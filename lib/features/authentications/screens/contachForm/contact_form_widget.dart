@@ -9,6 +9,7 @@ import '../../../../common_widgets/form/input_fields.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/sizes.dart';
 import '../../../../constants/text_strings.dart';
+import '../../../../utils/utils.dart';
 
 
 class ContactFormWidget extends StatefulWidget {
@@ -47,21 +48,14 @@ Future sendEmail() async{
 
 
   if (response.statusCode == 200) {
-    SnackBar(
-      behavior: SnackBarBehavior.floating,
-      margin: EdgeInsets.only(bottom: 100.0),
-      content: Text("Email Sent", style: TextStyle(color: Colors.green),),
-    );
+    Utils.toastMessageS("Email Sent Successfully");
+
   }else{
-    SnackBar(
-      behavior: SnackBarBehavior.floating,
-      margin: EdgeInsets.only(bottom: 100.0),
-      content: Text(response.body),
-    );
+    Utils.toastMessageF("Error! Something wrong try again");
   }
 
-  debugPrint("RESPONSE CODE: ${response.statusCode}");
-  debugPrint("RESPONSE TEXT:${response.body}");
+  // debugPrint("RESPONSE CODE: ${response.statusCode}");
+  // debugPrint("RESPONSE TEXT:${response.body}");
   return response.statusCode;
 
 }
@@ -193,20 +187,20 @@ class _ContactFormWidgetState extends State<ContactFormWidget> {
 
     if(_formkey.currentState!.validate()){
       int code = await sendEmail();
-      if (code == 200) {
-
-        Get.snackbar("Email Sent!", "Thanks for contacting us!",
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.green.withOpacity(0.1),
-            colorText: Colors.green,
-        );
-      }else{
-        Get.snackbar("Error!", "Oh! Email not sent",
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.redAccent.withOpacity(0.1),
-            colorText: Colors.red
-        );
-      }
+      // if (code == 200) {
+      //
+      //   Get.snackbar("Email Sent!", "Thanks for contacting us!",
+      //       snackPosition: SnackPosition.BOTTOM,
+      //       backgroundColor: Colors.green.withOpacity(0.1),
+      //       colorText: Colors.green,
+      //   );
+      // }else{
+      //   Get.snackbar("Error!", "Oh! Email not sent",
+      //       snackPosition: SnackPosition.BOTTOM,
+      //       backgroundColor: Colors.redAccent.withOpacity(0.1),
+      //       colorText: Colors.red
+      //   );
+      // }
 
 
 

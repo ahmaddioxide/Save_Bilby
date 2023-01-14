@@ -9,6 +9,8 @@ import 'package:save_the_bilby_fund/features/authentications/controllers/session
 import 'package:save_the_bilby_fund/repository/authentication_repository/authentication_repository.dart';
 import 'package:save_the_bilby_fund/repository/authentication_repository/user_repository.dart';
 
+import '../../../utils/utils.dart';
+
 class ProfileController extends GetxController{
 
   static ProfileController get instance => Get.find();
@@ -23,7 +25,15 @@ class ProfileController extends GetxController{
         ref.child(SessionController().userid.toString()).update({
           'UserName': name,
           'Phone': phone,
+        }
+
+        ).onError((error, stackTrace){
+          Utils.toastMessageF(error.toString());
+
         });
+
+        Utils.toastMessageS("Updated Successfully:)");
+
 
       }
 

@@ -3,8 +3,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:save_the_bilby_fund/features/authentications/controllers/session_controller.dart';
+import 'package:save_the_bilby_fund/features/authentications/screens/signup/signup_screen.dart';
 import 'package:save_the_bilby_fund/repository/authentication_repository/user_repository.dart';
 import '../../../utils/Dashboard.dart';
+import '../../../utils/utils.dart';
 import '../screens/login/login_screen.dart';
 
 class SignUpController extends GetxController {
@@ -25,13 +27,14 @@ class SignUpController extends GetxController {
   void signUp(String username, String email, String password, String Phone)async{
 
     FirebaseAuth auth = FirebaseAuth.instance;
-    final User = auth.currentUser;
+    // final User = auth.currentUser;
 
     int Reward = 0;
     int imgCategorize = 0;
+    UserCredential? userCredential;
 
     try{
-      auth.createUserWithEmailAndPassword(
+       userCredential = await auth.createUserWithEmailAndPassword(
           email: email,
           password: password
       ).then((value){
@@ -47,30 +50,22 @@ class SignUpController extends GetxController {
           'ImageCategorized': imgCategorize,
         });
 
-          Get.offAll(() => const Dash());
-
-        // else{
-        //   Get.to(() => const SignUpScreen());
+        // if(userCredential!.user!.emailVerified == false){
+        //   User? x =  FirebaseAuth.instance.currentUser;
+        //   x?.sendEmailVerification();
         // }
 
+          Get.offAll(() => const LoginScreen());
+        Utils.toastMessageS("Registered Successfully:)");
+
+
+
       }).onError((error, stackTrace){
-            Get.showSnackbar(GetSnackBar(message: error.toString(),));
+        Utils.toastMessageF(error.toString());
       });
     } catch (error) {
-      if(error != null) {
-        Get.snackbar("Error", "Details are invalid",
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.redAccent.withOpacity(0.1),
-            colorText: Colors.red
-        );
-      }
-      else if(error == null) {
-        Get.snackbar("Registration Successful", "Welcome to DashBoard",
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.greenAccent.withOpacity(0.1),
-            colorText: Colors.teal,
-        );
-      }
+      Utils.toastMessageF(error.toString());
+
     }
   }
   }

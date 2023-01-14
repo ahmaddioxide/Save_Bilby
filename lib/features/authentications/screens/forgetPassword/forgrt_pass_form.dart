@@ -5,6 +5,7 @@ import '../../../../common_widgets/form/input_fields.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/sizes.dart';
 import '../../../../constants/text_strings.dart';
+import '../../../../utils/utils.dart';
 
 class ForgetFormWidget extends StatefulWidget {
   const ForgetFormWidget({Key? key}) : super(key: key);
@@ -30,13 +31,8 @@ class _ForgetFormWidgetState extends State<ForgetFormWidget> {
   Widget build(BuildContext context) {
     resetPass() async {
       try {
-        await FirebaseAuth.instance.sendPasswordResetEmail(email: email)
-            .whenComplete(() {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Email has been sent"),
-
-            ),);
+        await FirebaseAuth.instance.sendPasswordResetEmail(email: email).onError((error, stackTrace) {
+          Utils.toastMessageF(error.toString());
         });
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
@@ -46,6 +42,7 @@ class _ForgetFormWidgetState extends State<ForgetFormWidget> {
             ),);
         }
       }
+
     }
     return   Container(
       padding: const EdgeInsets.symmetric(vertical: tFormHeight - 10),

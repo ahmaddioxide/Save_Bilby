@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:save_the_bilby_fund/constants/text_strings.dart';
 

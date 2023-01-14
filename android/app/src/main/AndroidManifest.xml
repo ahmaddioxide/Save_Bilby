@@ -3,7 +3,7 @@
    <application
         android:label="Save Bilby"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/whitebilby">
         <activity
             android:name=".MainActivity"
             android:exported="true"

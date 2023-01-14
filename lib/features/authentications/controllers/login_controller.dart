@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:save_the_bilby_fund/features/authentications/controllers/session_controller.dart';
+import 'package:save_the_bilby_fund/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../repository/authentication_repository/authentication_repository.dart';
@@ -27,42 +28,30 @@ class LoginController extends GetxController {
   void loginUser(String email, String password) async {
 
     FirebaseAuth auth = FirebaseAuth.instance;
-    final User = auth.currentUser;
+    // final User = auth.currentUser;
 
-    await auth.signInWithEmailAndPassword(email: email, password: password).then((value){
-      SessionController().userid = value.user!.uid.toString();});
-    // if(await User != null){
-      Get.offAll(() => const Dash());
-    // }
+    // await auth.signInWithEmailAndPassword(email: email, password: password).then((value){
+    //   SessionController().userid = value.user!.uid.toString();});
+    // // if(await User != null){
+    //   Get.offAll(() => const Dash());
+    // // }
 
-    // try{
-    //   await auth.signInWithEmailAndPassword(email: email, password: password).then((value){
-    //     SessionController().userid = value.user!.uid.toString();
-    //     if(User != null){
-    //       Get.offAll(() => const Dash());
-    //     }
-    //   });
-    //
-    //   // print("New Login");
-    //
-    //
-    // }catch(error){
-    //   if(error != null) {
-    //     Get.snackbar("Error", "Details are invalid",
-    //         snackPosition: SnackPosition.BOTTOM,
-    //         backgroundColor: Colors.redAccent.withOpacity(0.1),
-    //         colorText: Colors.red
-    //     );
-    //   }
-    //   else if(error == null) {
-    //     Get.snackbar("Logging In", "Welcome to DashBoard",
-    //         snackPosition: SnackPosition.BOTTOM,
-    //         backgroundColor: Colors.greenAccent.withOpacity(0.1),
-    //         colorText: Colors.teal
-    //     );
-    //   }
-    //
-    // }
+    try{
+      await auth.signInWithEmailAndPassword(email: email, password: password).then((value){
+        SessionController().userid = value.user!.uid.toString();
+          Get.offAll(() => const Dash());
+        Utils.toastMessageS("Logged in Successsfully:)");
+
+      }).onError((error, stackTrace){
+        Utils.toastMessageF(error.toString());
+      });
+      
+
+    }catch(error){
+
+      Utils.toastMessageF(error.toString());
+
+    }
 
 
   }
