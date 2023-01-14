@@ -44,15 +44,15 @@ class _UploadScreenState extends State<UploadScreen> {
                       // animation: true,
                       // animationDuration: 1000,
                       direction: Axis.vertical,
-                      borderColor: Colors.blue.shade500,
+                      borderColor: tPrimaryColor,
                       borderWidth: 5.0,
                       backgroundColor: Colors.white38,
-                      valueColor: AlwaysStoppedAnimation(Colors.blue),
+                      valueColor: AlwaysStoppedAnimation(tPrimaryColor),
                       center: Center(
                         child: Text(
                           "${((double.parse(progressController.imagesUploaded.toString()) / double.parse(progressController.totalImagesToUpload.toString())) * 100).toInt()}" +
                               "%",
-                          style: TextStyle(fontSize: 26, color: tPrimaryColor),
+                          style: TextStyle(fontSize: 26, color: footercolor),
                         ),
                       ),
                       value: double.parse(
@@ -64,7 +64,7 @@ class _UploadScreenState extends State<UploadScreen> {
                     return Center(
                       child: Container(
                           child: Text(
-                        "Done Upload",
+                        "Uploaded Successfully",
                         style: TextStyle(
                             fontSize: 26,
                             color: tPrimaryColor,

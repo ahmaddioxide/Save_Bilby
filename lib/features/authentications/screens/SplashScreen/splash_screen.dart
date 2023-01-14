@@ -13,64 +13,47 @@ import '../../../../firebase_options.dart';
 import '../../../../repository/authentication_repository/authentication_repository.dart';
 import '../../../../utils/Dashboard.dart';
 
-
 class Splash extends StatefulWidget {
-
-
   @override
   SplashScreenState createState() => SplashScreenState();
 }
+
 class SplashScreenState extends State<Splash> {
   FirebaseAuth auth = FirebaseAuth.instance;
-
-
-
 
   @override
   void initState() {
     super.initState();
     final user = auth.currentUser;
     // Firebase.initializeApp().then((value) => Get.put(AuthenticationRepository()));
-    if(user != null){
+    if (user != null) {
       SessionController().userid = user.uid.toString();
-      Timer(Duration(seconds: 5), ()=> Get.offAll(() =>  Dash()));
-
-    }else{
+      Timer(Duration(seconds: 3), () => Get.offAll(() => Dash()));
+    } else {
       // print("hello");
-      Timer(Duration(seconds: 5), ()=> Get.offAll(() =>  LoginScreen()));
-
+      Timer(Duration(seconds: 3), () => Get.offAll(() => LoginScreen()));
     }
-
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
-        color: tPrimaryColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image(image: AssetImage("assets/images/whitebilby.png"), height: 160),
-
-            SizedBox(height: 50,),
-
-            Text(
-              "Save the Bilby Funds",
-              style: TextStyle(
-                  fontSize: 23,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white),
-            ),          ],
-        ),
-
-
-
+      color: tPrimaryColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image(image: AssetImage("assets/images/whitebilby.png"), height: 160),
+          // SizedBox(
+          //   height: 50,
+          // ),
+          // Text(
+          //   "Save The Bilby Fund",
+          //   style: TextStyle(
+          //       fontSize: 23, fontWeight: FontWeight.w700, color: Colors.white),
+          // ),
+        ],
+      ),
     );
-
-
   }
-
-
 }
