@@ -52,7 +52,10 @@ Future SelectAndUploadImages() async {
               "categoryId":"unknown",
             });
           }).whenComplete(() => () {
+            uploadProgressController.imagesUploaded.value=0;
+            uploadProgressController.totalImagesToUpload.value=0;
                     debugPrint(
+
                         "Image Data saved to Realtime Database: ${fileName}");
                   });
         });

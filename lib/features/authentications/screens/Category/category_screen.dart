@@ -1,17 +1,13 @@
 import 'dart:ui';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:save_the_bilby_fund/features/authentications/screens/custom_appbar.dart';
 import 'package:save_the_bilby_fund/constants/colors.dart';
 import 'package:save_the_bilby_fund/features/authentications/screens/Category/cards_grid_widget.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import '../../controllers/session_controller.dart';
 import '../SettingsSecreen/User_Profile.dart';
 import '../contachForm/contact_form.dart';
-import '../login/login_screen.dart';
 import 'data.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -24,6 +20,14 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
 
+  Future WaitFunctionToLoadImageURLInCards() async {
+
+     await Future.delayed(Duration(seconds: 3));
+
+
+//return your_main_future_code_here;
+
+  }
 
   final _pageOptions = [
     CategoriesScreen(),
@@ -32,19 +36,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   ];
 
   final DatabaseReference imageref =
-      FirebaseDatabase.instance.ref().child('images');
+  FirebaseDatabase.instance.ref().child('images');
 
   void Remove() async {
     List<String> imagekeys = [];
     final Mainimageref = FirebaseDatabase.instance.ref("images");
     DatabaseEvent event = await Mainimageref.once();
     Map<String, dynamic> children =
-        Map<String, dynamic>.from(event.snapshot.value as Map);
+    Map<String, dynamic>.from(event.snapshot.value as Map);
 
     children.entries.forEach((e) => imagekeys.add(e.key.toString()));
     for (int i = 0; i < 4; i++) {
       final DatabaseReference ref =
-          FirebaseDatabase.instance.ref().child('images/${imagekeys[i]}');
+      FirebaseDatabase.instance.ref().child('images/${imagekeys[i]}');
       ref.remove();
     }
   }
@@ -52,7 +56,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   int count = 0;
 
   List<Data> datalist = [];
-  late String ImageURL = "";
+   String ImageURL="" ;
 
   @override
   Widget build(BuildContext context) {
@@ -91,13 +95,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                       color: Color(0xff455A64),
                                       child: Column(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                           children: [
                                             Text(
                                               "Dear user you had reached your maximum limit of categorizing four images!",
-                                               style: TextStyle(
+                                              style: TextStyle(
                                                   color: Colors.white,fontSize: 20),
                                             ),
                                             Text(
@@ -110,7 +114,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                     actions: [
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                        MainAxisAlignment.end,
                                         children: [
                                           TextButton(
                                             onPressed: () {
@@ -162,12 +166,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       }
                       ImageURL = datalist[count].imgurl;
                       // Map<dynamic, dynamic> map = snapshot.data.snapshot.value;
-                      return Image.network(
-                        datalist[count].imgurl,
-                        fit: BoxFit.cover,
+                      return Center(
+                          child: Image.network(
+                            datalist[count].imgurl,
+                            fit: BoxFit.cover,
+                          ),
                       );
                     } else
-                      return Image.asset('assets/images/bilby.jpg');
+                      return SizedBox(child: Image.asset('assets/images/bilby.jpg',));
                   },
                 ),
               ),
@@ -179,15 +185,24 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                "Please select a category for the image shown above to the best of your knowledge",
+                "Please select a category for the image",
                 style: TextStyle(
                   color: tPrimaryColor,
                   fontSize: 20,
                 ),
               ),
-              CategoryList(
-                image_url_: ImageURL,
-              ),
+              FutureBuilder(
+                future: WaitFunctionToLoadImageURLInCards(),
+                builder: (BuildContext context, AsyncSnapshot snapshot){
+                  if(snapshot.connectionState == ConnectionState.done){
+                    return CategoryList(
+                      image_url_: ImageURL,
+                    );
+                  }else{
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
+                ),
             ],
           ),
         ),
