@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../repository/authentication_repository/authentication_repository.dart';
 import '../../../utils/Dashboard.dart';
+import '../screens/Category/navigation.dart';
 import '../screens/login/login_screen.dart';
 
 class LoginController extends GetxController {
@@ -39,8 +40,8 @@ class LoginController extends GetxController {
     try{
       await auth.signInWithEmailAndPassword(email: email, password: password).then((value){
         SessionController().userid = value.user!.uid.toString();
-          Get.offAll(() => const Dash());
-        Utils.toastMessageS("Logged in Successsfully:)");
+          Get.offAll(() => const NavBar());
+        Utils.toastMessageS("Logged in Successfully:)");
 
       }).onError((error, stackTrace){
         Utils.toastMessageF(error.toString());

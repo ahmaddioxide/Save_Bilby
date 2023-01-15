@@ -12,6 +12,7 @@ import 'package:save_the_bilby_fund/constants/colors.dart';
 import '../../../../firebase_options.dart';
 import '../../../../repository/authentication_repository/authentication_repository.dart';
 import '../../../../utils/Dashboard.dart';
+import '../Category/navigation.dart';
 
 
 class Splash extends StatefulWidget {
@@ -33,7 +34,7 @@ class SplashScreenState extends State<Splash> {
     // Firebase.initializeApp().then((value) => Get.put(AuthenticationRepository()));
     if(user != null){
       SessionController().userid = user.uid.toString();
-      Timer(Duration(seconds: 3), ()=> Get.offAll(() =>  Dash()));
+      Timer(Duration(seconds: 3), ()=> Get.offAll(() =>  NavBar()));
 
     }else{
       // print("hello");
