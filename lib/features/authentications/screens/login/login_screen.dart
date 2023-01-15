@@ -31,7 +31,7 @@ class LoginScreen extends StatelessWidget  {
           ),
 
           bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(140.0),
+              preferredSize: const Size.fromHeight(110.0),
               child: Container(
                 padding: const EdgeInsets.only(bottom: 15),
                 child: Column(
@@ -40,7 +40,7 @@ class LoginScreen extends StatelessWidget  {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
 
-                        Image(image: AssetImage("assets/images/whitebilby.png"), height: 120),
+                        Image(image: AssetImage("assets/images/whitebilby.png"), height: 100),
                       ],
                     ),
 
