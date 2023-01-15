@@ -26,13 +26,10 @@ class ProfileController extends GetxController{
           'UserName': name,
           'Phone': phone,
         }
-
         ).onError((error, stackTrace){
           Utils.toastMessageF(error.toString());
-
         });
 
-        Utils.toastMessageS("Updated Successfully:)");
 
 
       }

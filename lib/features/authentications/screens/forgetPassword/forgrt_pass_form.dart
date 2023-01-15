@@ -1,11 +1,13 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../common_widgets/form/input_fields.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/sizes.dart';
 import '../../../../constants/text_strings.dart';
 import '../../../../utils/utils.dart';
+import '../login/login_screen.dart';
 
 class ForgetFormWidget extends StatefulWidget {
   const ForgetFormWidget({Key? key}) : super(key: key);
@@ -92,7 +94,12 @@ class _ForgetFormWidgetState extends State<ForgetFormWidget> {
                   setState(() {
                     email=emailController.text;
                     resetPass();
-                });}
+                    Utils.toastMessageS("Recovery Email Sent:)");
+                    Get.offAll(() => const LoginScreen());
+
+                  });
+
+                }
 
                 },
                 child: Text("Recover".toUpperCase()),

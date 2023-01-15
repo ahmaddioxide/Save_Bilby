@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:save_the_bilby_fund/repository/authentication_repository/authentication_repository.dart';
-// import 'features/authentications/screens/SplashScreen/splash_screen.dart';
 import 'features/authentications/screens/SplashScreen/splash_screen.dart';
 import 'features/authentications/screens/login/login_screen.dart';
 import 'firebase_options.dart';
