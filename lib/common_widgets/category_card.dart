@@ -15,11 +15,8 @@ class CategoryCard extends StatefulWidget {
 
   // this is URL for send email function
 
-  late final String URL_Image;
+  final String URL_Image;
 
-  // int rewardpoints = 0;
-  int count = 1;
-  // int ImageCategorized = 0;
   CategoryCard(
       {super.key,
       required this.category_name,
@@ -87,8 +84,6 @@ class _CategoryCardState extends State<CategoryCard> {
       );
     }
 
-    // debugPrint("RESPONSE CODE: ${response.statusCode}");
-    // debugPrint("RESPONSE TEXT:${response.body}");
     return response.statusCode;
   }
 
@@ -121,6 +116,7 @@ class _CategoryCardState extends State<CategoryCard> {
                   'RewardPoints': rewardP+1,
                   'ImageCategorized': Cateimg+1,
                 });
+                print(this.widget.URL_Image);
 
                 reference.child(DateTime.now().microsecondsSinceEpoch.toString()).set({
                   'Category  : ': this.widget.category_name,

@@ -61,8 +61,53 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: tPrimaryColor,
+        centerTitle: true,
+        automaticallyImplyLeading: false,
 
-      appBar: customAppBar("Bilby", Icons.arrow_back),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(40),
+          ),
+        ),
+
+        bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(110.0),
+            child: Container(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+
+                      Image(image: AssetImage("assets/images/whitebilby.png"), height: 100),
+                    ],
+                  ),
+
+                  Container(
+                    margin: const EdgeInsets.only(top: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:  [
+                        Text(
+                          "Login",
+                          style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white),
+                        ),
+
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )),
+      ),
+
+
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
