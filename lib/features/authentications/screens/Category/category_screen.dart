@@ -57,7 +57,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton:FloatingActionButton(
+      floatingActionButton:FloatingActionButton.small(
         backgroundColor: tPrimaryColor,
         foregroundColor: Colors.white,
 
