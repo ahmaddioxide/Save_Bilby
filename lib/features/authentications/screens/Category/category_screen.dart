@@ -59,6 +59,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     return Scaffold(
       floatingActionButton:FloatingActionButton(
         backgroundColor: tPrimaryColor,
+        
         foregroundColor: Colors.white,
 
         onPressed: scrollUp,
