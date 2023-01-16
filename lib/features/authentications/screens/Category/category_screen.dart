@@ -212,11 +212,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           }
                           //Remove();
                         },
-                        // child: Text('Next',
-                        //     style: TextStyle(
-                        //         fontSize: 20,
-                        //         color: tPrimaryColor,
-                        //         fontWeight: FontWeight.bold))
 
                     ),
                   )
