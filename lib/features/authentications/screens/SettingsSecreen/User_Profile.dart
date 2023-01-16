@@ -71,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children:  [
                           Text(
-                            "Login",
+                            "Profile",
                             style: TextStyle(
                                 fontSize: 28,
                                 fontWeight: FontWeight.w700,

@@ -18,6 +18,7 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  final controller = ScrollController();
   Future WaitFunctionToLoadImageURLInCards() async {
     await Future.delayed(Duration(seconds: 3));
 
@@ -56,6 +57,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton:FloatingActionButton(
+        backgroundColor: tPrimaryColor,
+        foregroundColor: Colors.white,
+
+        onPressed: scrollUp,
+        child: Icon(Icons.arrow_upward),
+
+      ),
       appBar: AppBar(
         backgroundColor: tPrimaryColor,
         centerTitle: true,
@@ -99,6 +108,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             )),
       ),
       body: SingleChildScrollView(
+        controller: controller,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
@@ -265,4 +275,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       ),
     );
   }
+  void scrollUp(){
+    final double start = 0;
+    controller.jumpTo(start);
+  }
+
 }
