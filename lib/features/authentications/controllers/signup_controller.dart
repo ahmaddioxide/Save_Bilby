@@ -43,7 +43,7 @@ class SignUpController extends GetxController {
 
         ref.child(value.user!.uid.toString()).set({
           'email': value.user!.email.toString(),
-          'password': password,
+          // 'password': password,
           'UserName': username,
           'Phone' : Phone,
           'RewardPoints': Reward,

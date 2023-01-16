@@ -111,13 +111,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         controller: controller,
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 20,
+            horizontal: 10,
           ),
           child: Wrap(
             runSpacing: 5,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+
                 children: [
                   Text(
                     "To categorize next image click on :",
@@ -128,9 +129,17 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   ),
                   Visibility(
                     visible: visible,
-                    child: TextButton(
-
-
+                    child: ElevatedButton(
+                        child:Icon( //<-- SEE HERE
+                          Icons.navigate_next_rounded,
+                          color: Colors.white,
+                          size: 35,
+                        ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: tPrimaryColor,
+                        shape: CircleBorder(), //<-- SEE HERE
+                        padding: EdgeInsets.all(2),
+                      ),
                         onPressed: () {
                           setState(() {
                             count++;
@@ -203,11 +212,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           }
                           //Remove();
                         },
-                        child: Text('Next',
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: tPrimaryColor,
-                                fontWeight: FontWeight.bold))),
+                        // child: Text('Next',
+                        //     style: TextStyle(
+                        //         fontSize: 20,
+                        //         color: tPrimaryColor,
+                        //         fontWeight: FontWeight.bold))
+
+                    ),
                   )
                 ],
               ),
@@ -239,6 +250,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         for (var key in keys) {
                           Data data = new Data(values[key]["imageURL"]);
                           datalist.add(data);
+                        }
+                        if(count==datalist.length){count==datalist.length-1;
                         }
                         ImageURL = datalist[count].imgurl;
                         // Map<dynamic, dynamic> map = snapshot.data.snapshot.value;
