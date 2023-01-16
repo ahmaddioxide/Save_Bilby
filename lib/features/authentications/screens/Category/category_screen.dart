@@ -51,6 +51,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   }
 
   int count = 0;
+  bool visible = true;
 
   List<Data> datalist = [];
   String ImageURL = "";
@@ -125,84 +126,89 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       fontSize: 17,
                     ),
                   ),
-                  TextButton(
-                      onPressed: () {
-                        setState(() {
-                          count++;
-                        });
-                        if (count == 4) {
-                          Remove();
-                          count = 0;
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return Container(
-                                  height: 300,
-                                  child: AlertDialog(
-                                    backgroundColor: Color(0xff455A64),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20.0))),
-                                    content: Container(
-                                      height: 300,
-                                      color: Color(0xff455A64),
-                                      child: Column(
+                  Visibility(
+                    visible: visible,
+                    child: TextButton(
+
+
+                        onPressed: () {
+                          setState(() {
+                            count++;
+                          });
+                          if (count == 4) {
+                            Remove();
+                            count = 0;
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return Container(
+                                    height: 300,
+                                    child: AlertDialog(
+                                      backgroundColor: Color(0xff455A64),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20.0))),
+                                      content: Container(
+                                        height: 300,
+                                        color: Color(0xff455A64),
+                                        child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                "Dear user you had reached your maximum limit of categorizing four images!",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20),
+                                              ),
+                                              Text(
+                                                "Do you want to continue categorize more images or quit!",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20),
+                                              )
+                                            ]),
+                                      ),
+                                      actions: [
+                                        Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                              MainAxisAlignment.end,
                                           children: [
-                                            Text(
-                                              "Dear user you had reached your maximum limit of categorizing four images!",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20),
-                                            ),
-                                            Text(
-                                              "Do you want to continue categorize more images or quit!",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20),
-                                            )
-                                          ]),
-                                    ),
-                                    actions: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.of(context)
-                                                  .pop(AlertDialog);
-                                            },
-                                            child: Text(
-                                              "Continue ",
-                                              style: TextStyle(fontSize: 20),
-                                            ),
-                                          ),
-                                          TextButton(
+                                            TextButton(
                                               onPressed: () {
-                                                SystemNavigator.pop();
+                                                Navigator.of(context)
+                                                    .pop(AlertDialog);
                                               },
                                               child: Text(
-                                                "Quit",
+                                                "Continue ",
                                                 style: TextStyle(fontSize: 20),
-                                              ))
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                );
-                              });
-                        }
-                        //Remove();
-                      },
-                      child: Text('Next',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: tPrimaryColor,
-                              fontWeight: FontWeight.bold)))
+                                              ),
+                                            ),
+                                            TextButton(
+                                                onPressed: () {
+                                                  SystemNavigator.pop();
+                                                },
+                                                child: Text(
+                                                  "Quit",
+                                                  style: TextStyle(fontSize: 20),
+                                                ))
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                });
+                          }
+                          //Remove();
+                        },
+                        child: Text('Next',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: tPrimaryColor,
+                                fontWeight: FontWeight.bold))),
+                  )
                 ],
               ),
               Container(
@@ -212,7 +218,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   builder: (context, AsyncSnapshot snapshot) {
                     if (!snapshot.hasData) {
                       return Center(
-                        child: Text("No image to show"),
+                        child: Center(child: CircularProgressIndicator()),
                       );
                     } else if (snapshot.connectionState ==
                         ConnectionState.waiting) {
@@ -222,21 +228,30 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           child: Center(child: CircularProgressIndicator()));
                     } else if (snapshot.hasData) {
                       datalist.clear();
-                      var keys = snapshot.data.snapshot.value.keys;
+                      if(snapshot.data.snapshot.value == null){
+                        // visible = false;
+                        return Center(
+                          child: Text("No image to show"),
+                        );
+                      }else{
+                        var keys = snapshot.data.snapshot.value.keys;
+                        var values = snapshot.data.snapshot.value;
+                        for (var key in keys) {
+                          Data data = new Data(values[key]["imageURL"]);
+                          datalist.add(data);
+                        }
+                        ImageURL = datalist[count].imgurl;
+                        // Map<dynamic, dynamic> map = snapshot.data.snapshot.value;
+                        return Center(
+                          child: Image.network(
+                            datalist[count].imgurl,
+                            fit: BoxFit.cover,
+                          ),
+                        );
 
-                      var values = snapshot.data.snapshot.value;
-                      for (var key in keys) {
-                        Data data = new Data(values[key]["imageURL"]);
-                        datalist.add(data);
                       }
-                      ImageURL = datalist[count].imgurl;
-                      // Map<dynamic, dynamic> map = snapshot.data.snapshot.value;
-                      return Center(
-                        child: Image.network(
-                          datalist[count].imgurl,
-                          fit: BoxFit.cover,
-                        ),
-                      );
+
+
                     } else
                       return SizedBox(
                           child: Image.asset(
