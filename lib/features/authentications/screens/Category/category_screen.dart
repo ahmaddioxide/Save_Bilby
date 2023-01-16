@@ -1,3 +1,4 @@
+
 import 'dart:ui';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
@@ -57,14 +58,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton:FloatingActionButton.small(
+      floatingActionButton: FloatingActionButton.small(
         backgroundColor: tPrimaryColor,
-        
         foregroundColor: Colors.white,
-
         onPressed: scrollUp,
         child: Icon(Icons.arrow_upward),
-
       ),
       appBar: AppBar(
         backgroundColor: tPrimaryColor,
@@ -213,7 +211,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   stream: imageref.onValue,
                   builder: (context, AsyncSnapshot snapshot) {
                     if (!snapshot.hasData) {
-                      return Center(child: CircularProgressIndicator());
+                      return Center(
+                        child: Text("No image to show"),
+                      );
                     } else if (snapshot.connectionState ==
                         ConnectionState.waiting) {
                       return Container(
@@ -223,6 +223,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     } else if (snapshot.hasData) {
                       datalist.clear();
                       var keys = snapshot.data.snapshot.value.keys;
+
                       var values = snapshot.data.snapshot.value;
                       for (var key in keys) {
                         Data data = new Data(values[key]["imageURL"]);
@@ -276,9 +277,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       ),
     );
   }
-  void scrollUp(){
+
+  void scrollUp() {
     final double start = 0;
     controller.jumpTo(start);
   }
-
 }
