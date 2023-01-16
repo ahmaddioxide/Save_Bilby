@@ -13,20 +13,15 @@ import 'data.dart';
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
 
-
   @override
   State<CategoriesScreen> createState() => _CategoriesScreenState();
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-
   Future WaitFunctionToLoadImageURLInCards() async {
-
-     await Future.delayed(Duration(seconds: 3));
-
+    await Future.delayed(Duration(seconds: 3));
 
 //return your_main_future_code_here;
-
   }
 
   final _pageOptions = [
@@ -36,19 +31,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   ];
 
   final DatabaseReference imageref =
-  FirebaseDatabase.instance.ref().child('images');
+      FirebaseDatabase.instance.ref().child('images');
 
   void Remove() async {
     List<String> imagekeys = [];
     final Mainimageref = FirebaseDatabase.instance.ref("images");
     DatabaseEvent event = await Mainimageref.once();
     Map<String, dynamic> children =
-    Map<String, dynamic>.from(event.snapshot.value as Map);
+        Map<String, dynamic>.from(event.snapshot.value as Map);
 
     children.entries.forEach((e) => imagekeys.add(e.key.toString()));
     for (int i = 0; i < 4; i++) {
       final DatabaseReference ref =
-      FirebaseDatabase.instance.ref().child('images/${imagekeys[i]}');
+          FirebaseDatabase.instance.ref().child('images/${imagekeys[i]}');
       ref.remove();
     }
   }
@@ -56,7 +51,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   int count = 0;
 
   List<Data> datalist = [];
-   String ImageURL="" ;
+  String ImageURL = "";
 
   @override
   Widget build(BuildContext context) {
@@ -65,15 +60,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         backgroundColor: tPrimaryColor,
         centerTitle: true,
         automaticallyImplyLeading: false,
-
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(40),
           ),
         ),
-
         bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(110.0),
+            preferredSize: const Size.fromHeight(80.0),
             child: Container(
               padding: const EdgeInsets.only(bottom: 15),
               child: Column(
@@ -81,24 +74,23 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
-                      Image(image: AssetImage("assets/images/whitebilby.png"), height: 100),
+                      Image(
+                          image: AssetImage("assets/images/whitebilby.png"),
+                          height: 70),
                     ],
                   ),
-
                   Container(
                     margin: const EdgeInsets.only(top: 8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children:  [
+                      children: [
                         Text(
-                          "Login",
+                          "Home",
                           style: TextStyle(
-                              fontSize: 28,
+                              fontSize: 25,
                               fontWeight: FontWeight.w700,
                               color: Colors.white),
                         ),
-
                       ],
                     ),
                   )
@@ -106,17 +98,24 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               ),
             )),
       ),
-
-
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
           child: Wrap(
-            runSpacing: 10,
+            runSpacing: 5,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  Text(
+                    "To categorize next image click on :",
+                    style: TextStyle(
+                      color: tPrimaryColor,
+                      fontSize: 17,
+                    ),
+                  ),
                   TextButton(
                       onPressed: () {
                         setState(() {
@@ -124,7 +123,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         });
                         if (count == 4) {
                           Remove();
-                          count=0;
+                          count = 0;
                           showDialog(
                               context: context,
                               builder: (context) {
@@ -140,38 +139,47 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                       color: Color(0xff455A64),
                                       child: Column(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                              MainAxisAlignment.center,
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                              CrossAxisAlignment.center,
                                           children: [
                                             Text(
                                               "Dear user you had reached your maximum limit of categorizing four images!",
                                               style: TextStyle(
-                                                  color: Colors.white,fontSize: 20),
+                                                  color: Colors.white,
+                                                  fontSize: 20),
                                             ),
                                             Text(
                                               "Do you want to continue categorize more images or quit!",
                                               style: TextStyle(
-                                                  color: Colors.white,fontSize: 20),
+                                                  color: Colors.white,
+                                                  fontSize: 20),
                                             )
                                           ]),
                                     ),
                                     actions: [
                                       Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.end,
+                                            MainAxisAlignment.end,
                                         children: [
                                           TextButton(
                                             onPressed: () {
-                                              Navigator.of(context).pop(AlertDialog);
+                                              Navigator.of(context)
+                                                  .pop(AlertDialog);
                                             },
-                                            child: Text("Continue ",style: TextStyle(fontSize: 20),),
+                                            child: Text(
+                                              "Continue ",
+                                              style: TextStyle(fontSize: 20),
+                                            ),
                                           ),
                                           TextButton(
                                               onPressed: () {
                                                 SystemNavigator.pop();
                                               },
-                                              child: Text("Quit",style: TextStyle(fontSize: 20),))
+                                              child: Text(
+                                                "Quit",
+                                                style: TextStyle(fontSize: 20),
+                                              ))
                                         ],
                                       )
                                     ],
@@ -189,7 +197,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 ],
               ),
               Container(
-                height: 250,
+                height: 230,
                 child: StreamBuilder(
                   stream: imageref.onValue,
                   builder: (context, AsyncSnapshot snapshot) {
@@ -212,42 +220,45 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       ImageURL = datalist[count].imgurl;
                       // Map<dynamic, dynamic> map = snapshot.data.snapshot.value;
                       return Center(
-                          child: Image.network(
-                            datalist[count].imgurl,
-                            fit: BoxFit.cover,
-                          ),
+                        child: Image.network(
+                          datalist[count].imgurl,
+                          fit: BoxFit.cover,
+                        ),
                       );
                     } else
-                      return SizedBox(child: Image.asset('assets/images/bilby.jpg',));
+                      return SizedBox(
+                          child: Image.asset(
+                        'assets/images/bilby.jpg',
+                      ));
                   },
                 ),
               ),
               Text(
-                "Category",
+                "Category : ",
                 style: TextStyle(
                     color: tPrimaryColor,
-                    fontSize: 25,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold),
               ),
               Text(
                 "Please select a category for the image",
                 style: TextStyle(
                   color: tPrimaryColor,
-                  fontSize: 20,
+                  fontSize: 17,
                 ),
               ),
               FutureBuilder(
                 future: WaitFunctionToLoadImageURLInCards(),
-                builder: (BuildContext context, AsyncSnapshot snapshot){
-                  if(snapshot.connectionState == ConnectionState.done){
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
                     return CategoryList(
                       image_url_: ImageURL,
                     );
-                  }else{
+                  } else {
                     return Center(child: CircularProgressIndicator());
                   }
                 },
-                ),
+              ),
             ],
           ),
         ),
