@@ -25,7 +25,6 @@ class SignUpController extends GetxController {
   void signUp(String username, String email, String password, String Phone)async{
 
     FirebaseAuth auth = FirebaseAuth.instance;
-    // final User = auth.currentUser;
 
     int Reward = 0;
     int imgCategorize = 0;
@@ -48,10 +47,6 @@ class SignUpController extends GetxController {
           'ImageCategorized': imgCategorize,
         });
 
-        // if(userCredential!.user!.emailVerified == false){
-        //   User? x =  FirebaseAuth.instance.currentUser;
-        //   x?.sendEmailVerification();
-        // }
 
           Get.offAll(() => const LoginScreen());
         Utils.toastMessageS("Registered Successfully:)");

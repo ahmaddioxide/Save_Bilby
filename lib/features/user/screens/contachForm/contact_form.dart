@@ -13,7 +13,6 @@ class ContactForm extends StatelessWidget  {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: tPrimaryColor,
           centerTitle: true,
@@ -96,7 +95,6 @@ class ContactForm extends StatelessWidget  {
               children: const [
 
                 ContactFormWidget(),
-                // FooterWidget(Texts: tDontHaveAnAccount,Title: tSignup),
               ],
             ),
           ),

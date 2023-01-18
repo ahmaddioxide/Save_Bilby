@@ -48,8 +48,6 @@ Future sendEmail() async{
     Utils.toastMessageF("Error! Something wrong try again");
   }
 
-  // debugPrint("RESPONSE CODE: ${response.statusCode}");
-  // debugPrint("RESPONSE TEXT:${response.body}");
   return response.statusCode;
 
 }
@@ -181,21 +179,6 @@ class _ContactFormWidgetState extends State<ContactFormWidget> {
 
     if(_formkey.currentState!.validate()){
       int code = await sendEmail();
-      // if (code == 200) {
-      //
-      //   Get.snackbar("Email Sent!", "Thanks for contacting us!",
-      //       snackPosition: SnackPosition.BOTTOM,
-      //       backgroundColor: Colors.green.withOpacity(0.1),
-      //       colorText: Colors.green,
-      //   );
-      // }else{
-      //   Get.snackbar("Error!", "Oh! Email not sent",
-      //       snackPosition: SnackPosition.BOTTOM,
-      //       backgroundColor: Colors.redAccent.withOpacity(0.1),
-      //       colorText: Colors.red
-      //   );
-      // }
-
 
 
     }

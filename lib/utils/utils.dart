@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:save_the_bilby_fund/constants/colors.dart';
 
 class Utils {
 

@@ -10,8 +10,6 @@ import '../../../utils/utils.dart';
 class ProfileController extends GetxController{
 
   static ProfileController get instance => Get.find();
-  // final _authRepo = Get.put(AuthenticationRepository());
-  // final _userRepo = Get.put(UserRepository());
 
 
   DatabaseReference ref = FirebaseDatabase.instance.ref("Users");

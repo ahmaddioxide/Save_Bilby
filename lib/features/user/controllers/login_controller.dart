@@ -24,13 +24,7 @@ class LoginController extends GetxController {
   void loginUser(String email, String password) async {
 
     FirebaseAuth auth = FirebaseAuth.instance;
-    // final User = auth.currentUser;
 
-    // await auth.signInWithEmailAndPassword(email: email, password: password).then((value){
-    //   SessionController().userid = value.user!.uid.toString();});
-    // // if(await User != null){
-    //   Get.offAll(() => const Dash());
-    // // }
 
     try{
       await auth.signInWithEmailAndPassword(email: email, password: password).then((value){
