@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../features/user/controllers/session_controller.dart';
+import '../utils/utils.dart';
 
 class CategoryCard extends StatefulWidget {
   late final String category_name;
@@ -119,7 +120,7 @@ class _CategoryCardState extends State<CategoryCard> {
                   'Date Categorized': formater.format(now),
                   'Image Url':this.widget.URL_Image,
                   'User email': mail,
-                });
+                }).whenComplete(() => { Utils.toastMessageS("Image categorized as '${widget.category_name}'")});
               }),
               child: Ink(
                   height: 50,

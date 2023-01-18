@@ -20,7 +20,9 @@ class CategoriesScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<CategoriesScreen> {
   final controller = ScrollController();
   Future WaitFunctionToLoadImageURLInCards() async {
-    await Future.delayed(Duration(seconds: 3));
+
+    // await while(ImageURL!=null);
+    await Future.delayed(Duration(milliseconds:2500 ));
 
 //return your_main_future_code_here;
   }
@@ -53,7 +55,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   bool visible = true;
 
   List<Data> datalist = [];
-  String ImageURL = "";
+  String ImageURL="0";
+  // Future<String> waitTillgetURL()async{
+  //   return Future(() async {
+  //      while(ImageURL=="0"){
+  //        debugPrint("IN WHILE LOOP");
+  //     };
+  //      return ImageURL;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -247,14 +257,42 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         }
                         if(count==datalist.length){count==datalist.length-1;
                         }
-                        ImageURL = datalist[count].imgurl;
+                        try {
+                          if(datalist.length<4){
+                            return Center(
+                              child: Text("Sorry! We are out of image"),
+                            );
+                          }
+                          else{
+                            ImageURL = datalist[count].imgurl;
+                            return Center(
+                              child: Image.network(
+                                datalist[count].imgurl,
+                                fit: BoxFit.cover,
+                                loadingBuilder: (BuildContext context, Widget child,
+                                    ImageChunkEvent? loadingProgress) {
+                                  if (loadingProgress == null) return child;
+                                  return Center(
+                                    child: CircularProgressIndicator(
+                                      value: loadingProgress.expectedTotalBytes != null
+                                          ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                          : null,
+                                    ),
+                                  );
+                                },
+                              ),
+                            );
+                          }
+
+                        } on Exception catch (_) {
+                           return Center(
+                            child: Text("No image to show"),
+                          );
+                        }
+
                         // Map<dynamic, dynamic> map = snapshot.data.snapshot.value;
-                        return Center(
-                          child: Image.network(
-                            datalist[count].imgurl,
-                            fit: BoxFit.cover,
-                          ),
-                        );
+
 
                       }
 
@@ -285,14 +323,39 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 future: WaitFunctionToLoadImageURLInCards(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
+                    // return CategoryList(
+                    //   image_url_: ImageURL,
+                  //);
+                  //   while(ImageURL=="0")
+                  //     {
+                  //       debugPrint("in loop");
+                  //     }
                     return CategoryList(
-                      image_url_: ImageURL,
+                          image_url_: ImageURL,
                     );
                   } else {
                     return Center(child: CircularProgressIndicator());
                   }
                 },
               ),
+
+              // FutureBuilder(
+              //   future:waitTillgetURL(), // _futureData is the future that will return the non-null value
+              //   builder: (BuildContext context, AsyncSnapshot snapshot) {
+              //     if (snapshot.hasData) {
+              //       if (snapshot.data != null) {
+              //         return CategoryList(
+              //                     image_url_: ImageURL,
+              //                   ); // non-null value is available, display it
+              //       } else {
+              //         return Center(child: CircularProgressIndicator()); // non-null value is not yet available, show a loading indicator
+              //       }
+              //     } else {
+              //       return Center(child: CircularProgressIndicator()); // non-null value is not yet available, show a loading indicator
+              //     }
+              //   },
+              // )
+
             ],
           ),
         ),
