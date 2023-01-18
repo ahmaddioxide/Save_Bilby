@@ -10,8 +10,8 @@ class Utils {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
-        backgroundColor: Colors.black12,
-        textColor: Colors.red,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
         fontSize: 16.0
     );
   }
@@ -21,7 +21,7 @@ class Utils {
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
-        backgroundColor: tPrimaryColor,
+        backgroundColor: Colors.teal,
         textColor:Colors.white ,
         fontSize: 18.0
     );

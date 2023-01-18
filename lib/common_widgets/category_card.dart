@@ -4,6 +4,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../features/user/controllers/category_cntroller.dart';
+import '../features/user/controllers/data_controller.dart';
 import '../features/user/controllers/session_controller.dart';
 import '../utils/utils.dart';
 
@@ -29,6 +31,7 @@ class CategoryCard extends StatefulWidget {
 
 class _CategoryCardState extends State<CategoryCard> {
   bool isCritical = false;
+  int clickednum = 1;
 
   final DateTime now = DateTime.now();
   final DateFormat formater = DateFormat('dd-MM-yyyy');
@@ -104,23 +107,39 @@ class _CategoryCardState extends State<CategoryCard> {
               }),
               splashColor: Color(0xff455A64),
               onTap: (() async {
-                if (this.widget.category_name == 'Bilby') {
-                  isCritical = true;
-                  await sendCriticalEmail(this.widget.URL_Image, mail);
-                }
-                ref.child(SessionController().userid.toString()).update({
-                  'RewardPoints': rewardP+1,
-                  'ImageCategorized': Cateimg+1,
-                });
-                print(this.widget.URL_Image);
+                if(clickednum == 1){
+                  clickednum = 0;
+                  if (ImageController().imageleft == true) {
 
-                reference.child(DateTime.now().microsecondsSinceEpoch.toString()).set({
-                  'Category  : ': this.widget.category_name,
-                  'Critical': isCritical,
-                  'Date Categorized': formater.format(now),
-                  'Image Url':this.widget.URL_Image,
-                  'User email': mail,
-                }).whenComplete(() => { Utils.toastMessageS("Image categorized as '${widget.category_name}'")});
+                    DataController().clicked = true;
+                    if (this.widget.category_name == 'Bilby') {
+                      isCritical = true;
+                      await sendCriticalEmail(this.widget.URL_Image, mail);
+                    }
+                    print("Clicked");
+                    ref.child(SessionController().userid.toString()).update({
+                      'RewardPoints': rewardP + 10,
+                      'ImageCategorized': Cateimg + 1,
+                    });
+                    print(this.widget.URL_Image);
+                    reference.child(DateTime
+                        .now()
+                        .microsecondsSinceEpoch
+                        .toString()).set({
+                      'Category  : ': this.widget.category_name,
+                      'Critical': isCritical,
+                      'Date Categorized': formater.format(now),
+                      'Image Url': this.widget.URL_Image,
+                      'User email': mail,
+                    });
+                  }else{
+                    Utils.toastMessageF("Cannot Categorize more images");
+                  }
+                }else{
+                  Utils.toastMessageF("Already Categorized this image");
+
+                }
+
               }),
               child: Ink(
                   height: 50,

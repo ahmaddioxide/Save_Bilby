@@ -4,7 +4,9 @@ import 'package:save_the_bilby_fund/constants/image_strings.dart';
 
 class CategoryList extends StatelessWidget {
   String image_url_;
-   CategoryList({super.key, required this.image_url_});
+  final controller;
+
+   CategoryList({super.key, required this.image_url_,  required this.controller});
 
 
   @override
@@ -13,6 +15,7 @@ class CategoryList extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.of(context).size.height/2.6,
       child: GridView.count(
+        controller: controller,
         crossAxisCount: 2,
         primary: false,
         crossAxisSpacing: 0,

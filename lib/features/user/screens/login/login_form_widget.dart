@@ -70,7 +70,7 @@ class _LoginFormState extends State<LoginForm> {
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                     icon: Icon(
-                        _isObscure ? Icons.visibility : Icons.visibility_off),
+                        _isObscure ? Icons.visibility_off : Icons.visibility),
                     onPressed: () {
                       setState(() {
                         _isObscure = !_isObscure;

@@ -6,6 +6,9 @@ import 'package:save_the_bilby_fund/constants/colors.dart';
 import 'package:save_the_bilby_fund/features/user/screens/Category/cards_grid_widget.dart';
 import 'package:firebase_database/firebase_database.dart';
 
+import '../../../../utils/utils.dart';
+import '../../controllers/category_cntroller.dart';
+import '../../controllers/data_controller.dart';
 import '../SettingsSecreen/User_Profile.dart';
 import '../contachForm/contact_form.dart';
 import 'data.dart';
@@ -44,7 +47,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         Map<String, dynamic>.from(event.snapshot.value as Map);
 
     children.entries.forEach((e) => imagekeys.add(e.key.toString()));
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 1; i++) {
       final DatabaseReference ref =
           FirebaseDatabase.instance.ref().child('images/${imagekeys[i]}');
       ref.remove();
@@ -52,6 +55,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   }
 
   int count = 0;
+  int counter = 1;
+  int datalength = 0;
+
   bool visible = true;
 
   List<Data> datalist = [];
@@ -72,6 +78,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         backgroundColor: tPrimaryColor,
         foregroundColor: Colors.white,
         onPressed: scrollUp,
+        shape: StadiumBorder(
+            side: BorderSide(
+                color: Colors.white24, width: 4)),
+
         child: Icon(Icons.arrow_upward),
       ),
       appBar: AppBar(
@@ -137,25 +147,39 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     ),
                   ),
                   Visibility(
-                    visible: visible,
+                    visible: true,
                     child: ElevatedButton(
                         child:Icon( //<-- SEE HERE
                           Icons.navigate_next_rounded,
                           color: Colors.white,
-                          size: 35,
+                          size: 31,
                         ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: tPrimaryColor,
-                        shape: CircleBorder(), //<-- SEE HERE
+                        shape: CircleBorder(
+                            side: BorderSide(color: Colors.white24, width: 4)
+                        ),
                         padding: EdgeInsets.all(2),
                       ),
-                        onPressed: () {
+                        onPressed: () async {
                           setState(() {
-                            count++;
+                            if(datalength <= 3){
+                              Utils.toastMessageF("No more images to show");
+                              // Remove();
+                              ImageController().imageleft = false;
+                            }else if(DataController().clicked == true){
+                              DataController().clicked = false;
+                              count++;
+                            }
+                            else{
+                              Utils.toastMessageF("Please categorize this image first");
+
+                            }
                           });
                           if (count == 4) {
-                            Remove();
                             count = 0;
+                            counter = 1;
+
                             showDialog(
                                 context: context,
                                 builder: (context) {
@@ -219,8 +243,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                   );
                                 });
                           }
-                          //Remove();
-                        },
+                          else if(counter == count){
+                            Remove();
+                            counter++;
+                          }
+                          },
 
                     ),
                   )
@@ -254,13 +281,18 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         for (var key in keys) {
                           Data data = new Data(values[key]["imageURL"]);
                           datalist.add(data);
+                          datalength = datalist.length;
+
+
                         }
                         if(count==datalist.length){count==datalist.length-1;
                         }
                         try {
                           if(datalist.length<4){
+                            ImageController().imageleft = false;
+
                             return Center(
-                              child: Text("Sorry! We are out of image"),
+                              child: Text("Sorry! We are out of images"),
                             );
                           }
                           else{
@@ -286,7 +318,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           }
 
                         } on Exception catch (_) {
-                           return Center(
+                          ImageController().imageleft = false;
+                          return Center(
                             child: Text("No image to show"),
                           );
                         }
@@ -332,6 +365,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   //     }
                     return CategoryList(
                           image_url_: ImageURL,
+                      controller: controller,
                     );
                   } else {
                     return Center(child: CircularProgressIndicator());
