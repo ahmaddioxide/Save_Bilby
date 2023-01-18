@@ -2,9 +2,8 @@
 import 'dart:ui';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:save_the_bilby_fund/features/authentications/screens/custom_appbar.dart';
 import 'package:save_the_bilby_fund/constants/colors.dart';
-import 'package:save_the_bilby_fund/features/authentications/screens/Category/cards_grid_widget.dart';
+import 'package:save_the_bilby_fund/features/user/screens/Category/cards_grid_widget.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 import '../SettingsSecreen/User_Profile.dart';

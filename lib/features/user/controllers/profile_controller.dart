@@ -3,12 +3,8 @@
 
 
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:save_the_bilby_fund/features/authentications/controllers/session_controller.dart';
-import 'package:save_the_bilby_fund/repository/authentication_repository/authentication_repository.dart';
-import 'package:save_the_bilby_fund/repository/authentication_repository/user_repository.dart';
-
+import 'package:save_the_bilby_fund/features/user/controllers/session_controller.dart';
 import '../../../utils/utils.dart';
 
 class ProfileController extends GetxController{

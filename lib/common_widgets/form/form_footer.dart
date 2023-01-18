@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:save_the_bilby_fund/constants/sizes.dart';
 import 'package:save_the_bilby_fund/constants/text_strings.dart';
-import 'package:save_the_bilby_fund/features/authentications/screens/contachForm/contact_form.dart';
-import 'package:save_the_bilby_fund/features/authentications/screens/login/login_screen.dart';
-import 'package:save_the_bilby_fund/features/authentications/screens/signup/signup_screen.dart';
+import 'package:save_the_bilby_fund/features/user/screens/contachForm/contact_form.dart';
+import 'package:save_the_bilby_fund/features/user/screens/login/login_screen.dart';
+import 'package:save_the_bilby_fund/features/user/screens/signup/signup_screen.dart';
 
 import '../../constants/colors.dart';
 

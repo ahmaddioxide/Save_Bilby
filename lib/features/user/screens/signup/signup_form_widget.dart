@@ -1,8 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:save_the_bilby_fund/features/authentications/controllers/signup_controller.dart';
-import 'package:save_the_bilby_fund/features/authentications/models/user_model.dart';
+import 'package:save_the_bilby_fund/features/user/controllers/signup_controller.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/sizes.dart';
 import '../../../../constants/text_strings.dart';

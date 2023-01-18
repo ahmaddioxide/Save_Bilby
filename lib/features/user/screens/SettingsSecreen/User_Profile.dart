@@ -1,24 +1,44 @@
 
 
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:save_the_bilby_fund/common_widgets/form/form_footer.dart';
-import 'package:save_the_bilby_fund/constants/sizes.dart';
-import 'package:save_the_bilby_fund/constants/text_strings.dart';
-import 'package:save_the_bilby_fund/features/authentications/screens/login/login_form_widget.dart';
+import 'package:save_the_bilby_fund/constants/colors.dart';
+import 'package:save_the_bilby_fund/features/user/screens/SettingsSecreen/profile_form_widget.dart';
+import '../../controllers/session_controller.dart';
+import '../login/login_screen.dart';
 
-import '../../../../constants/colors.dart';
-import '../custom_appbar.dart';
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
-class LoginScreen extends StatelessWidget  {
-  const LoginScreen({Key? key}) : super(key: key);
+
+
+
 
   @override
-  Widget build(BuildContext context) {
-    //Get the size in LoginHeaderWidget()
+  Widget build(BuildContext context){
+
     return SafeArea(
       child: Scaffold(
-        extendBodyBehindAppBar: true,
+        floatingActionButton:FloatingActionButton(
+          backgroundColor: tPrimaryColor,
+          foregroundColor: Colors.white,
+          shape: StadiumBorder(
+              side: BorderSide(
+                  color: Colors.white24, width: 4)),
+          onPressed: () { FirebaseAuth auth = FirebaseAuth.instance;
+
+          auth.signOut().then((value){
+            SessionController().userid = '';
+            Get.offAll(() => const LoginScreen());
+          });},
+          child: Icon(Icons.logout_outlined),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+
+
+        extendBodyBehindAppBar: false,
         appBar: AppBar(
           backgroundColor: tPrimaryColor,
           centerTitle: true,
@@ -50,7 +70,7 @@ class LoginScreen extends StatelessWidget  {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children:  [
                           Text(
-                            "Login",
+                            "Profile",
                             style: TextStyle(
                                 fontSize: 28,
                                 fontWeight: FontWeight.w700,
@@ -66,13 +86,10 @@ class LoginScreen extends StatelessWidget  {
         ),
         body: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.all(tDefaultSize),
+            padding: const EdgeInsets.all(30),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                // (,
-                LoginForm(),
-                FooterWidget(Texts: tDontHaveAnAccount,Title: tSignup),
+              children:  [
+                ProfileFormWidget(),
               ],
             ),
           ),
@@ -81,3 +98,7 @@ class LoginScreen extends StatelessWidget  {
     );
   }
 }
+
+
+
+

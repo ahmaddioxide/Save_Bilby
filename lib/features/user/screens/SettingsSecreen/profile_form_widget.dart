@@ -2,13 +2,11 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:save_the_bilby_fund/features/admin/screens/uploadScreen/upload_screen.dart';
-import 'package:save_the_bilby_fund/features/authentications/controllers/session_controller.dart';
-import 'package:save_the_bilby_fund/features/authentications/models/user_model.dart';
+import 'package:save_the_bilby_fund/features/user/controllers/session_controller.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/sizes.dart';
 import '../../../../constants/text_strings.dart';
 import '../../../../utils/utils.dart';
-import '../../controllers/profile_controller.dart';
 
 class ProfileFormWidget extends StatefulWidget {
   ProfileFormWidget({

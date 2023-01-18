@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:save_the_bilby_fund/features/admin/screens/uploadScreen/upload_screen_backend.dart';
-import 'package:save_the_bilby_fund/features/authentications/screens/custom_appbar.dart';
-
+import 'package:save_the_bilby_fund/features/user/screens/custom_appbar.dart';
 import '../../../../constants/colors.dart';
 
 class UploadScreen extends StatefulWidget {

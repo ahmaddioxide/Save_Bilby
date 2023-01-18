@@ -1,6 +1,6 @@
 # save_the_bilby_fund
 
-Flutter App to Save bilbu from extinction
+Flutter App to Save bilby from extinction
 
 ## Getting Started
 

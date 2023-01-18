@@ -1,13 +1,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:save_the_bilby_fund/features/authentications/controllers/session_controller.dart';
-import 'package:save_the_bilby_fund/features/authentications/screens/SplashScreen/splash_screen.dart';
-import 'package:save_the_bilby_fund/features/authentications/screens/login/login_screen.dart';
-import 'package:save_the_bilby_fund/repository/authentication_repository/exception/login_email_password_failure.dart';
-import 'package:save_the_bilby_fund/repository/authentication_repository/exception/signup_email_password_failure.dart';
-import 'package:save_the_bilby_fund/utils/Dashboard.dart';
-import '../../features/authentications/screens/signup/signup_screen.dart';
+import 'package:save_the_bilby_fund/features/user/screens/SplashScreen/splash_screen.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();

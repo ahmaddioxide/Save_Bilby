@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:save_the_bilby_fund/constants/colors.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:intl/intl.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:save_the_bilby_fund/features/authentications/screens/Category/category_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import '../features/authentications/controllers/session_controller.dart';
+import '../features/user/controllers/session_controller.dart';
 
 class CategoryCard extends StatefulWidget {
   late final String category_name;
@@ -45,8 +42,6 @@ class _CategoryCardState extends State<CategoryCard> {
   //EMAIL SERVICE FUNCTION
 
   Future sendCriticalEmail(String ImageURL, String UserEmail) async {
-    String message =
-        "Image URL= ${ImageURL}\nDate of Categorization= ${formater.format(now)}";
     final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
     const serviceId = "service_zlcbq3h";
     const templateId = "template_ars5g2u";

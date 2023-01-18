@@ -1,16 +1,9 @@
-
-
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:save_the_bilby_fund/features/authentications/controllers/session_controller.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../features/authentications/screens/SettingsSecreen/User_Profile.dart';
-import '../features/authentications/screens/login/login_screen.dart';
-import '../repository/authentication_repository/authentication_repository.dart';
+import 'package:save_the_bilby_fund/features/user/controllers/session_controller.dart';
+import '../features/user/screens/SettingsSecreen/User_Profile.dart';
+import '../features/user/screens/login/login_screen.dart';
 
 class Dash extends StatelessWidget {
   const Dash({Key? key}) : super(key: key);

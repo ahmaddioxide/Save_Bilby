@@ -5,14 +5,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:save_the_bilby_fund/features/authentications/controllers/session_controller.dart';
+import 'package:save_the_bilby_fund/features/user/controllers/session_controller.dart';
 import 'package:save_the_bilby_fund/utils/utils.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../repository/authentication_repository/authentication_repository.dart';
-import '../../../utils/Dashboard.dart';
 import '../screens/Category/navigation.dart';
-import '../screens/login/login_screen.dart';
 
 class LoginController extends GetxController {
   static LoginController get instance => Get.find();
