@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:save_the_bilby_fund/features/user/controllers/session_controller.dart';
@@ -6,7 +5,7 @@ import '../../../../constants/colors.dart';
 import '../../../../constants/sizes.dart';
 import 'contact_form_widget.dart';
 
-class ContactForm extends StatelessWidget  {
+class ContactForm extends StatelessWidget {
   const ContactForm({Key? key}) : super(key: key);
 
   @override
@@ -17,13 +16,11 @@ class ContactForm extends StatelessWidget  {
           backgroundColor: tPrimaryColor,
           centerTitle: true,
           automaticallyImplyLeading: false,
-
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(40),
             ),
           ),
-
           bottom: PreferredSize(
               preferredSize: const Size.fromHeight(110.0),
               child: Container(
@@ -32,7 +29,9 @@ class ContactForm extends StatelessWidget  {
                   children: [
                     Row(
                       children: [
-                        SizedBox(width: 15,),
+                        SizedBox(
+                          width: 15,
+                        ),
                         Center(
                           child: SizedBox.fromSize(
                             size: Size(56, 56),
@@ -41,17 +40,20 @@ class ContactForm extends StatelessWidget  {
                                 color: tPrimaryColor,
                                 child: InkWell(
                                   splashColor: Colors.white,
-                                  onTap: () {  Get.back();
+                                  onTap: () {
+                                    Get.back();
                                   },
                                   child: Visibility(
-
                                     visible: usercheck(),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: <Widget>[
-
-
-                                        Icon(Icons.arrow_back, color: Colors.white, size: 30,),
+                                        Icon(
+                                          Icons.arrow_back,
+                                          color: Colors.white,
+                                          size: 30,
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -60,18 +62,19 @@ class ContactForm extends StatelessWidget  {
                             ),
                           ),
                         ),
-
-                        SizedBox(width: 50,),
-
-                        Image(image: AssetImage("assets/images/whitebilby.png"), height: 100),
+                        SizedBox(
+                          width: 50,
+                        ),
+                        Image(
+                            image: AssetImage("assets/images/whitebilby.png"),
+                            height: 100),
                       ],
                     ),
-
                     Container(
                       margin: const EdgeInsets.only(top: 8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children:  [
+                        children: [
                           Text(
                             "Contact Form",
                             style: TextStyle(
@@ -79,7 +82,6 @@ class ContactForm extends StatelessWidget  {
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),
                           ),
-
                         ],
                       ),
                     )
@@ -93,7 +95,6 @@ class ContactForm extends StatelessWidget  {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
-
                 ContactFormWidget(),
               ],
             ),
@@ -103,12 +104,10 @@ class ContactForm extends StatelessWidget  {
     );
   }
 
-  bool usercheck(){
-    if(SessionController().userid.toString() == ""){
+  bool usercheck() {
+    if (SessionController().userid.toString() == "") {
       return true;
-
-    }
-    else{
+    } else {
       return false;
     }
   }

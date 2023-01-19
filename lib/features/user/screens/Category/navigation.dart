@@ -1,12 +1,9 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import '../../../../constants/colors.dart';
 import '../SettingsSecreen/User_Profile.dart';
 import '../contachForm/contact_form.dart';
 import 'category_screen.dart';
-
-
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -16,7 +13,6 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-
   int currentindex = 0;
   final screens = [
     CategoriesScreen(),
@@ -26,33 +22,41 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type:BottomNavigationBarType.fixed,
+      bottomNavigationBar: GNav(
         backgroundColor: tPrimaryColor,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white24,
-        currentIndex: currentindex,
-        onTap: (index) => setState(() => currentindex = index),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.app_registration_rounded),
-            label: "Survey",
+        rippleColor: Color(0xD6EFE8FF),
+        hoverColor: Color(0x046054FF),
+        gap: 10,
+        activeColor: tPrimaryColor,
+        iconSize: 24,
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        duration: Duration(milliseconds: 400),
+        tabBackgroundColor: Colors.white,
+        color: Colors.white,
+        // animationDuration: Duration(milliseconds: 1000),
+        // labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        // // surfaceTintColor: Colors.white,
+        // elevation: 30,
+        // backgroundColor: tPrimaryColor,
+        // selectedIndex: currentindex,
+        selectedIndex: currentindex,
+        onTabChange: (index) => setState(() => currentindex = index),
+        tabs: [
+          GButton(
+            icon: Icons.app_registration_rounded,
+            text: "Survey",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Profile",
+          GButton(
+            icon: Icons.person,
+            text: "Profile",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: "Contact Us",
+          GButton(
+            icon: Icons.message,
+            text: "Contact Us",
           ),
-
         ],
       ),
       body: screens[currentindex],
-
     );
   }
-
-
 }
