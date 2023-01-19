@@ -38,7 +38,6 @@ class _CategoryCardState extends State<CategoryCard> {
 
   final DatabaseReference ref = FirebaseDatabase.instance.ref('Users');
 
-
   //REFERENCE TO USERS
   final DatabaseReference reference =
       FirebaseDatabase.instance.ref('Categorized_images');
@@ -107,10 +106,9 @@ class _CategoryCardState extends State<CategoryCard> {
               }),
               splashColor: Color(0xff455A64),
               onTap: (() async {
-                if(clickednum == 1){
+                if (clickednum == 1) {
                   clickednum = 0;
                   if (ImageController().imageleft == true) {
-
                     DataController().clicked = true;
                     if (this.widget.category_name == 'Bilby') {
                       isCritical = true;
@@ -122,31 +120,31 @@ class _CategoryCardState extends State<CategoryCard> {
                       'ImageCategorized': Cateimg + 1,
                     });
                     print(this.widget.URL_Image);
-                    reference.child(DateTime
-                        .now()
-                        .microsecondsSinceEpoch
-                        .toString()).set({
+                    reference
+                        .child(DateTime.now().microsecondsSinceEpoch.toString())
+                        .set({
                       'Category  : ': this.widget.category_name,
                       'Critical': isCritical,
                       'Date Categorized': formater.format(now),
                       'Image Url': this.widget.URL_Image,
                       'User email': mail,
-                    });
-                  }else{
+                    }).whenComplete(() => {
+                              Utils.toastMessageS(
+                                  "Image Categorized as \"${this.widget.category_name}\"")
+                            });
+                  } else {
                     Utils.toastMessageF("Cannot Categorize more images");
                   }
-                }else{
+                } else {
                   Utils.toastMessageF("Already Categorized this image");
-
                 }
-
               }),
               child: Ink(
                   height: 50,
                   width: 50,
                   child: Card(
-                    shape:
-                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
                     shadowColor: Colors.black,
                     elevation: 20.0,
                     clipBehavior: Clip.hardEdge,
@@ -166,24 +164,11 @@ class _CategoryCardState extends State<CategoryCard> {
                     ),
                   )),
             );
-
-
-
-
-          }
-          else if (snapshot.hasError) {
+          } else if (snapshot.hasError) {
             return Center(child: Text(snapshot.error.toString()));
           }
 
           return Center(child: CircularProgressIndicator());
-        }
-
-
-    );
-
-
+        });
   }
 }
-
-
-
