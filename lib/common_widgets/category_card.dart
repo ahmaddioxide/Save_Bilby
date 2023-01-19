@@ -44,7 +44,7 @@ class _CategoryCardState extends State<CategoryCard> {
 
   //EMAIL SERVICE FUNCTION
 
-  Future sendCriticalEmail(String ImageURL, String UserEmail) async {
+  Future sendCriticalEmail(String ImageURL, String UserEmail,String animalName) async {
     final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
     const serviceId = "service_zlcbq3h";
     const templateId = "template_ars5g2u";
@@ -58,9 +58,9 @@ class _CategoryCardState extends State<CategoryCard> {
           "user_id": userId,
           "template_params": {
             "name": "${UserEmail}",
-            "subject": "Bilby Detected",
+            "subject": "${animalName} Detected",
             "message":
-                "Critical Image URL= ${ImageURL}\nDate of Detection= ${formater.format(now)}",
+                "Critical Image URL= ${ImageURL}\nAnimal Detected= ${animalName}\nDate of Detection= ${formater.format(now)}\nEmail of Detector= ${UserEmail}",
             "user_email": UserEmail.toString(),
           }
         }));
@@ -110,9 +110,9 @@ class _CategoryCardState extends State<CategoryCard> {
                   clickednum = 0;
                   if (ImageController().imageleft == true) {
                     DataController().clicked = true;
-                    if (this.widget.category_name == 'Bilby') {
+                    if (this.widget.category_name == 'Cat'||this.widget.category_name == 'Dog'||this.widget.category_name == 'Fox') {
                       isCritical = true;
-                      await sendCriticalEmail(this.widget.URL_Image, mail);
+                      await sendCriticalEmail(this.widget.URL_Image, mail,this.widget.category_name);
                     }
                     print("Clicked");
                     ref.child(SessionController().userid.toString()).update({
