@@ -4,10 +4,11 @@ import 'package:save_the_bilby_fund/features/user/controllers/session_controller
 import '../../../../constants/colors.dart';
 import '../../../../constants/sizes.dart';
 import 'contact_form_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactForm extends StatelessWidget {
   const ContactForm({Key? key}) : super(key: key);
-
+  final urlprivacy = 'https://www.savethebilbyfund.org.au/privacy-policy/';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -91,11 +92,29 @@ class ContactForm extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.all(tDefaultSize),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 ContactFormWidget(),
+                Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("© Save The Bilby Fund 2023. All rights reserved.",
+                          style: TextStyle(color: Colors.black, fontSize: 12)),
+                      TextButton(
+                          onPressed: () async {
+                            await launchUrl(Uri.parse(urlprivacy));
+                          },
+                          child: Text(
+                            "Privacy Policy",
+                            style:
+                                TextStyle(color: Colors.blueGrey, fontSize: 12,fontWeight: FontWeight.bold),
+                          ))
+                    ],
+                  ),
+                )
               ],
             ),
           ),
