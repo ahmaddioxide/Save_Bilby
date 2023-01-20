@@ -7,20 +7,29 @@ import '../../../../constants/sizes.dart';
 import '../../../../constants/text_strings.dart';
 import '../../../../utils/utils.dart';
 
+//inheriting a stateful widget
+// (a dynamic widget which can change its appearance in response of some event)
+
 class ContactFormWidget extends StatefulWidget {
   const ContactFormWidget({Key? key}) : super(key: key);
 
   @override
   State<ContactFormWidget> createState() => _ContactFormWidgetState();
 }
+
+//creating controllers for controlling desired fields
+
 final nameController=TextEditingController();
 final subjectController=TextEditingController();
 final emailController=TextEditingController();
 final messageController=TextEditingController();
 
 
+//function for sending mail to adime email address
 
 Future sendEmail() async{
+
+  //credentials for desired email address
 
   final url=Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
   const serviceId = "service_zlcbq3h";
@@ -41,6 +50,9 @@ Future sendEmail() async{
       }));
 
 
+  //showing toast messages in case of email success/failure
+
+
   if (response.statusCode == 200) {
     Utils.toastMessageS("Email Sent Successfully");
 
@@ -56,6 +68,8 @@ class _ContactFormWidgetState extends State<ContactFormWidget> {
   @override
   Widget build(BuildContext context) {
     final _formkey = GlobalKey<FormState>();
+
+    // In this Container we have different TextFormField with validations
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: tFormHeight - 10),
@@ -165,6 +179,7 @@ class _ContactFormWidgetState extends State<ContactFormWidget> {
                   ),)
             ),
 
+            // Here we have Button with text Send to send filled details to admin Email
 
             const SizedBox(height: tFormHeight - 10),
             SizedBox(

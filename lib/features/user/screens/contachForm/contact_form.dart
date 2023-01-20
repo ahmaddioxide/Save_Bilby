@@ -9,11 +9,13 @@ import 'package:url_launcher/url_launcher.dart';
 class ContactForm extends StatelessWidget {
   const ContactForm({Key? key}) : super(key: key);
   final urlprivacy = 'https://www.savethebilbyfund.org.au/privacy-policy/';
+
+  //Ui design
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AppBar( // App bar of contact form
           backgroundColor: tPrimaryColor,
           centerTitle: true,
           automaticallyImplyLeading: false,
@@ -96,7 +98,7 @@ class ContactForm extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ContactFormWidget(),
+                ContactFormWidget(),  // calling contact form Widget class
                 Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -122,6 +124,8 @@ class ContactForm extends StatelessWidget {
       ),
     );
   }
+
+  //user status check
 
   bool usercheck() {
     if (SessionController().userid.toString() == "") {

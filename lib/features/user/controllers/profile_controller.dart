@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:save_the_bilby_fund/features/user/controllers/session_controller.dart';
 import '../../../utils/utils.dart';
 
+//This controller is used to update user data on profile screen
+
 class ProfileController extends GetxController{
 
   static ProfileController get instance => Get.find();

@@ -1,5 +1,6 @@
 
 
+// This controller is used to save the current user ID
 
 
 class SessionController{

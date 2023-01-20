@@ -7,7 +7,7 @@ import 'package:save_the_bilby_fund/features/user/screens/login/login_screen.dar
 import 'package:save_the_bilby_fund/constants/colors.dart';
 import '../Category/navigation.dart';
 
-
+// In Splash screen we initialized firebase authentication and check if user already loggedin then it will take him to Home screen
 class Splash extends StatefulWidget {
 
 

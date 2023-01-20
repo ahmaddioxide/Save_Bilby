@@ -22,6 +22,8 @@ class _ForgetFormWidgetState extends State<ForgetFormWidget> {
   final emailController = TextEditingController();
   late String email;
 
+  //dispose method performs all object cleanup
+  //so the garbage collector no longer needs to call the object
 
   @override
   void dispose() {
@@ -33,6 +35,7 @@ class _ForgetFormWidgetState extends State<ForgetFormWidget> {
   Widget build(BuildContext context) {
     resetPass() async {
       try {
+        //firebase authentication checks for valid user with given email
         await FirebaseAuth.instance.sendPasswordResetEmail(email: email).onError((error, stackTrace) {
           Utils.toastMessageF(error.toString());
         });
@@ -46,6 +49,7 @@ class _ForgetFormWidgetState extends State<ForgetFormWidget> {
       }
 
     }
+    // This container have input field of Username and Email with validation
     return   Container(
       padding: const EdgeInsets.symmetric(vertical: tFormHeight - 10),
       child: Form(

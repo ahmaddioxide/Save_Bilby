@@ -38,6 +38,7 @@ class _LoginFormState extends State<LoginForm> {
                 if (!_isEmailValid) {
                   return 'Invalid email.';
                 }
+                // Return null if the entered username is valid
                 return null;
               },
               decoration: InputDecoration(
@@ -113,6 +114,7 @@ class _LoginFormState extends State<LoginForm> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
                 onPressed: () async {
+                  // if statement will check validation then we will send input data to Login controller for validation
                   if (formkey.currentState!.validate()) {
                     LoginController.instance.loginUser(
                         controller.emailController.text.toString(),

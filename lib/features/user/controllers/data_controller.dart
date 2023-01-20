@@ -1,3 +1,4 @@
+// this controller is used to check if user clicked on category or not
 
 
 class DataController{

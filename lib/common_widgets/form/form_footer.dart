@@ -8,7 +8,9 @@ import 'package:save_the_bilby_fund/features/user/screens/signup/signup_screen.d
 
 import '../../constants/colors.dart';
 
-
+// This is the footer of Login, Signup and contact form screen which has two text button
+// 1st for going to Login/signup screen depend on where you are
+// 2nd for going to contact form screen
 class FooterWidget extends StatelessWidget {
   final String Texts, Title;
   const FooterWidget({

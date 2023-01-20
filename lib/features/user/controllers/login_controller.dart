@@ -13,12 +13,12 @@ class LoginController extends GetxController {
   static LoginController get instance => Get.find();
 
 
-  /// TextField Controllers to get data from TextFields
+  // TextField Controllers to get data from TextFields
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
 
-  /// TextField Validation
+  // TextField Validation
 
   //Call this Function from Design & it will do the rest
   void loginUser(String email, String password) async {
@@ -26,10 +26,12 @@ class LoginController extends GetxController {
     FirebaseAuth auth = FirebaseAuth.instance;
 
 
+    // user authentication
     try{
       await auth.signInWithEmailAndPassword(email: email, password: password).then((value){
-        SessionController().userid = value.user!.uid.toString();
-          Get.offAll(() => const NavBar());
+        SessionController().userid = value.user!.uid.toString();       // this Session will store current user ID that will be useful for showing current user profile info
+
+        Get.offAll(() => const NavBar());
         Utils.toastMessageS("Logged in Successfully:)");
 
       }).onError((error, stackTrace){

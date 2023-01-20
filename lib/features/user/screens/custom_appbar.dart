@@ -1,4 +1,6 @@
 
+// This is a custom AppBar that we have used in most of the screen except Login and Profile
+// It take Text and icon as a parameter
 
 
 import 'package:flutter/material.dart';

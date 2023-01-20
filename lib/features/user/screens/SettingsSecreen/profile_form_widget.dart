@@ -28,6 +28,7 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: tFormHeight - 10),
+        // this function will get current user data form firebase
         child: StreamBuilder(
             stream: ref.child(SessionController().userid.toString()).onValue,
             builder: (context, AsyncSnapshot snapshot) {
@@ -211,6 +212,7 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
                         ),
                       ),
                       const SizedBox(height: tFormHeight - 10),
+                      // this button is only visible on admin email
                       Visibility(
                         visible: userEmail.toString()=='savebilby@gmail.com'?true:false,
                         // visible: true,
@@ -244,6 +246,7 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
     );
   }
 
+  // this function to update user profile
   void updateprofile(String name, String phone) {
     ref.child(SessionController().userid.toString()).update({
       'UserName': name,

@@ -7,6 +7,8 @@ import 'package:save_the_bilby_fund/repository/authentication_repository/user_re
 import '../../../utils/utils.dart';
 import '../screens/login/login_screen.dart';
 
+// SignUpController is used to store user data will he signup and alse create User Email And Password Authentication for login
+
 class SignUpController extends GetxController {
 
 
