@@ -65,6 +65,8 @@ dependencies:
   permission_handler: ^10.2.0
   external_path: ^1.0.3
   csv: ^5.0.1
+  firebase_messaging: ^14.2.1
+  flutter_local_notifications: ^13.0.0
 
 
 
