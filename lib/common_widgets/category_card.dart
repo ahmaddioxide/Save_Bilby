@@ -114,12 +114,12 @@ class _CategoryCardState extends State<CategoryCard> {
                       isCritical = true;
                       await sendCriticalEmail(this.widget.URL_Image, mail,this.widget.category_name);
                     }
-                    print("Clicked");
+                    debugPrint("Clicked");
                     ref.child(SessionController().userid.toString()).update({
                       'RewardPoints': rewardP + 10,
                       'ImageCategorized': Cateimg + 1,
                     });
-                    print(this.widget.URL_Image);
+                    debugPrint(this.widget.URL_Image);
                     reference
                         .child(DateTime.now().microsecondsSinceEpoch.toString())
                         .set({

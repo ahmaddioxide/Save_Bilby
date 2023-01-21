@@ -14,21 +14,19 @@ class ForgetPassword extends StatelessWidget  {
   @override
   Widget build(BuildContext context) {
     //Get the size in LoginHeaderWidget()
-    return SafeArea(
-      child: Scaffold(
-        // extendBodyBehindAppBar: true,
-        appBar: customAppBar(tForgetPassword, Icons.arrow_back),
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(tDefaultSize),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+    return Scaffold(
+      // extendBodyBehindAppBar: true,
+      appBar: customAppBar(tForgetPassword, Icons.arrow_back),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(tDefaultSize),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
 
-                ForgetFormWidget(),
-                FooterWidget(Texts: tDontHaveAnAccount,Title: tSignup),
-              ],
-            ),
+              ForgetFormWidget(),
+              FooterWidget(Texts: tDontHaveAnAccount,Title: tSignup),
+            ],
           ),
         ),
       ),

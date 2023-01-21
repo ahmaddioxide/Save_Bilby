@@ -10,19 +10,17 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        extendBodyBehindAppBar: false,
-        appBar: customAppBar(tSignup, Icons.arrow_back),
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(tDefaultSize),
-            child: Column(
-              children: const [
-                SignUpFormWidget(),
-                FooterWidget(Texts: tAlreadyHaveAnAccount,Title: tLogin),
-              ],
-            ),
+    return Scaffold(
+      extendBodyBehindAppBar: false,
+      appBar: customAppBar(tSignup, Icons.arrow_back),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(tDefaultSize),
+          child: Column(
+            children: const [
+              SignUpFormWidget(),
+              FooterWidget(Texts: tAlreadyHaveAnAccount,Title: tLogin),
+            ],
           ),
         ),
       ),

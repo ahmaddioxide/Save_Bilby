@@ -157,7 +157,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       ),
                       onPressed: () async {
                         setState(() {
-                          if (datalength <= 3) {
+                          if (datalength <= 20) {
                             Utils.toastMessageF("No more images to show");
                             // Remove();
                             ImageController().imageleft = false;
@@ -169,7 +169,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                 "Please categorize this image first");
                           }
                         });
-                        if (count == 4) {
+                        if (count == 20) {
                           count = 0;
                           counter = 1;
 
@@ -193,13 +193,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Text(
-                                              "Dear user you had reached your maximum limit of categorizing four images!",
+                                              "Dear user you had reached your maximum limit of categorizing images!",
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 20),
                                             ),
                                             Text(
-                                              "Do you want to continue categorize more images or quit!",
+                                              "\nDo you want to continue categorize more images or quit!",
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 20),
@@ -264,7 +264,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       if (snapshot.data.snapshot.value == null) {
                         // visible = false;
                         return Center(
-                          child: Text("No image to show"),
+                          child: Text("No more images to show :)\nNew images will be available soon.\nSee you later fella!"),
                         );
                       } else {
                         var keys = snapshot.data.snapshot.value.keys;
@@ -278,11 +278,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           count == datalist.length - 1;
                         }
                         try {
-                          if (datalist.length < 4) {
+                          if (datalist.length <= 20) {
                             ImageController().imageleft = false;
 
                             return Center(
-                              child: Text("Sorry! We are out of images"),
+                              child: Text("No more images to show :)\nNew images will be available soon.\nSee you later fella!"),
                             );
                           } else {
                             ImageURL = datalist[count].imgurl;

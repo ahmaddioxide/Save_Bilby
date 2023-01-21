@@ -19,7 +19,7 @@ Future<void> initializeDefault() async {
   }
 }
 main() async {
-  print("main started");
+  debugPrint("main started");
 
   WidgetsFlutterBinding.ensureInitialized();
   // initializeDefault();
@@ -32,11 +32,11 @@ main() async {
   //to Check Platform
   if (Platform.isAndroid) {
 // Android-specific code
-    print("Running on Android");
+    debugPrint("Running on Android");
   } else if (Platform.isIOS) {
 // iOS-specific code
-    print("Running on iOS");
-  }  print("Firebase Initialized");
+    debugPrint("Running on iOS");
+  }  debugPrint("Firebase Initialized");
   runApp(const MyApp());
 }
 
