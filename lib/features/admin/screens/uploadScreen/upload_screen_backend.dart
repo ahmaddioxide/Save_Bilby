@@ -24,23 +24,25 @@ final ImagePicker imagePicker = ImagePicker();//image picker instance that pick 
 List<XFile>? imageFiles = [];//list of files to be uploaded (XFiles)
 final imagesDatabaseRef = FirebaseDatabase.instance.ref().child("images");//images Database reference
 final datastoreRef = FirebaseStorage.instance.ref();//firebase datastore reference\
+List<String> emailsList = [];//list of Emails of all users present in Users database
 
-List<String> emailsList = [];
-getUsers() async {
+//this function get the emails of users from realtime database and save it as CSV file
+
+getUsersEmailSaveAsCSV() async {
   final snapshot = await FirebaseDatabase.instance.ref('Users').get();
   final map = await snapshot.value as Map<dynamic, dynamic>;
   map.forEach((key, value) {
     emailsList.add(value['email'].toString());
   });
-  debugPrint(emailsList.toString());
+  debugPrint(emailsList.toString());//list of all user's emails present in database
   Map<Permission, PermissionStatus> statuses = await [
     Permission.storage,
-  ].request();
+  ].request();//getting permission to to write file
 
-  List<List<dynamic>> rows = [];
+  List<List<dynamic>> rows = [];//creating rows for CSV
 
   List<dynamic> row = [];
-  row.add("Emails");
+  row.add("Emails");//header of rows
   rows.add(row);
   for (int i = 0; i < emailsList.length; i++) {
     List<dynamic> row = [];
@@ -48,14 +50,14 @@ getUsers() async {
     rows.add(row);
   }
 
-  String csv = const ListToCsvConverter().convert(rows);
-  var dir = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);
+  String csv = const ListToCsvConverter().convert(rows);//converting data to csv
+  var dir = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);//storing path at download
   debugPrint("dir $dir");
-  String file = "$dir";
+  String file = "$dir";//
 
-  File f = File(file + "/SaveBilbyUsersEmail.csv");
+  File f = File(file + "/SaveBilbyUsersEmail.csv");//giving name to File
 
-  f.writeAsString(csv).whenComplete(() {
+  f.writeAsString(csv).whenComplete(() {//creating file and show toast on completion
     debugPrint("Done Writing File to Downloads");
     Utils.toastMessageF("File Saved at ${dir}");
 
