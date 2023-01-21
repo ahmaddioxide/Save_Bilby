@@ -1,3 +1,4 @@
+import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -6,7 +7,10 @@ import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:external_path/external_path.dart';
+import 'package:permission_handler/permission_handler.dart';
 
+import '../../../../utils/utils.dart';
 //Controller for upload Screen
 class UploadProgressController extends GetxController {
   var imagesUploaded = 0.obs;//to check how many images have been uploaded
@@ -20,6 +24,44 @@ final ImagePicker imagePicker = ImagePicker();//image picker instance that pick 
 List<XFile>? imageFiles = [];//list of files to be uploaded (XFiles)
 final imagesDatabaseRef = FirebaseDatabase.instance.ref().child("images");//images Database reference
 final datastoreRef = FirebaseStorage.instance.ref();//firebase datastore reference\
+
+List<String> emailsList = [];
+getUsers() async {
+  final snapshot = await FirebaseDatabase.instance.ref('Users').get();
+  final map = await snapshot.value as Map<dynamic, dynamic>;
+  map.forEach((key, value) {
+    emailsList.add(value['email'].toString());
+  });
+  debugPrint(emailsList.toString());
+  Map<Permission, PermissionStatus> statuses = await [
+    Permission.storage,
+  ].request();
+
+  List<List<dynamic>> rows = [];
+
+  List<dynamic> row = [];
+  row.add("Emails");
+  rows.add(row);
+  for (int i = 0; i < emailsList.length; i++) {
+    List<dynamic> row = [];
+    row.add(emailsList[i]);
+    rows.add(row);
+  }
+
+  String csv = const ListToCsvConverter().convert(rows);
+  var dir = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);
+  debugPrint("dir $dir");
+  String file = "$dir";
+
+  File f = File(file + "/SaveBilbyUsersEmail.csv");
+
+  f.writeAsString(csv).whenComplete(() {
+    debugPrint("Done Writing File to Downloads");
+    Utils.toastMessageF("File Saved at ${dir}");
+
+  });
+
+}
 
 //function to select images from gallery and upload it to database
 Future SelectAndUploadImages() async {

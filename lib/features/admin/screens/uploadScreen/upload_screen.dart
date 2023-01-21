@@ -85,6 +85,7 @@ class _UploadScreenState extends State<UploadScreen> {
                   }
                 }),
               ),
+              ElevatedButton(onPressed: getUsers, child: Text("Download Users Email as CSV"),),
             ],
           ),
         ),
