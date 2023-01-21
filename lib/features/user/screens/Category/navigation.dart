@@ -14,16 +14,17 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  int currentindex = 0;
+  int currentindex = 1;
   final screens = [
-    CategoriesScreen(),
     ProfileScreen(),
+    CategoriesScreen(),
     ContactForm(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
+          index: 1,
           backgroundColor: Colors.blueGrey,
           color: tPrimaryColor,
           animationDuration: Duration(milliseconds: 300),
@@ -32,15 +33,16 @@ class _NavBarState extends State<NavBar> {
            
           items: [
             Icon(
-              Icons.app_registration_rounded,
-              size: 24,
-              color: Colors.white,
-            ),
-            Icon(
               Icons.person,
               size: 24,
               color: Colors.white,
             ),
+            Icon(
+              Icons.app_registration_rounded,
+              size: 24,
+              color: Colors.white,
+            ),
+
             Icon(
               Icons.message,
               size: 24,
