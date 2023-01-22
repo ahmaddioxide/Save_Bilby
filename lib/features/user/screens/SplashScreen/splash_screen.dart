@@ -8,6 +8,7 @@ import 'package:save_the_bilby_fund/features/user/controllers/session_controller
 import 'package:save_the_bilby_fund/features/user/screens/login/login_screen.dart';
 import 'package:save_the_bilby_fund/constants/colors.dart';
 import '../Category/navigation.dart';
+import '../signup/verify_email_page.dart';
 
 // In Splash screen we initialized firebase authentication and check if user already loggedin then it will take him to Home screen
 class Splash extends StatefulWidget {
@@ -33,7 +34,7 @@ class SplashScreenState extends State<Splash> {
     // Firebase.initializeApp().then((value) => Get.put(AuthenticationRepository()));
     if(user != null){
       SessionController().userid = user.uid.toString();
-      Timer(Duration(seconds: 3), ()=> Get.offAll(() =>  NavBar()));
+      Timer(Duration(seconds: 3), ()=> Get.offAll(() =>  VerifyEmailPage()));
 
     }else{
       // print("hello");

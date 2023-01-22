@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:save_the_bilby_fund/features/user/controllers/session_controller.dart';
 import 'package:save_the_bilby_fund/utils/utils.dart';
 import '../screens/Category/navigation.dart';
+import '../screens/signup/verify_email_page.dart';
 
 class LoginController extends GetxController {
   static LoginController get instance => Get.find();
@@ -31,7 +32,7 @@ class LoginController extends GetxController {
       await auth.signInWithEmailAndPassword(email: email, password: password).then((value){
         SessionController().userid = value.user!.uid.toString();       // this Session will store current user ID that will be useful for showing current user profile info
 
-        Get.offAll(() => const NavBar());
+        Get.offAll(() => const VerifyEmailPage());
         Utils.toastMessageS("Logged in Successfully:)");
 
       }).onError((error, stackTrace){

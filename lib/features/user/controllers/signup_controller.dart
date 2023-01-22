@@ -6,6 +6,7 @@ import 'package:save_the_bilby_fund/features/user/controllers/session_controller
 import 'package:save_the_bilby_fund/repository/authentication_repository/user_repository.dart';
 import '../../../utils/utils.dart';
 import '../screens/login/login_screen.dart';
+import '../screens/signup/verify_email_page.dart';
 
 // SignUpController is used to store user data will he signup and alse create User Email And Password Authentication for login
 
@@ -50,9 +51,8 @@ class SignUpController extends GetxController {
         });
 
 
-          Get.offAll(() => const LoginScreen());
+          Get.offAll(() => const VerifyEmailPage());
         Utils.toastMessageS("Registered Successfully:)");
-
 
 
       }).onError((error, stackTrace){
