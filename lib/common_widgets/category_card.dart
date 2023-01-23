@@ -140,13 +140,11 @@ class _CategoryCardState extends State<CategoryCard> {
                 }
               }),
               child: Ink(
-                  height: 50,
-                  width: 50,
                   child: Card(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                     shadowColor: Colors.black,
-                    elevation: 20.0,
+                    elevation: 25.0,
                     clipBehavior: Clip.hardEdge,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -157,7 +155,7 @@ class _CategoryCardState extends State<CategoryCard> {
                           this.widget.category_name,
                           style: TextStyle(
                               color: tPrimaryColor,
-                              fontSize: 20,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
