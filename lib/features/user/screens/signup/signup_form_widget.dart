@@ -48,7 +48,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                 labelText: tFullName,
                 hintText: tFullName,
                 border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               ),
             ),
             const SizedBox(height: tFormHeight - 20),
@@ -56,7 +56,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
               controller: controller.email,
               validator: (value) {
                 bool _isEmailValid = RegExp(
-                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                     .hasMatch(value!);
                 if (!_isEmailValid) {
                   return 'Invalid email.';
@@ -68,7 +68,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                 labelText: tEmail,
                 hintText: tEmail,
                 border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               ),
             ),
             const SizedBox(height: tFormHeight - 20),
@@ -76,7 +76,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
               controller: controller.phoneNo,
               validator: (value) {
                 bool _isEmailValid =
-                    RegExp(r'^(?:[+0][1-9])?[0-9]{8,15}$').hasMatch(value!);
+                RegExp(r'^(?:[+0][1-9])?[0-9]{8,15}$').hasMatch(value!);
                 if (!_isEmailValid) {
                   return 'Invalid phone number';
                 }
@@ -87,7 +87,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                 labelText: tPhoneNo,
                 hintText: tPhoneNo,
                 border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               ),
             ),
             const SizedBox(height: tFormHeight - 20),
@@ -108,7 +108,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                 labelText: tPassword,
                 hintText: tPassword,
                 border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               ),
             ),
             const SizedBox(height: tFormHeight - 10),
@@ -117,9 +117,9 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
               height: 50,
               child:
 
-                  //SIGN UP BUTTON THAT WILL SHOW A DIALOG BOX FOR USER  FIRST TO AGREE UPON TERMS AND CONDITIONS, THEN WILL REGISTER
+              //SIGN UP BUTTON THAT WILL SHOW A DIALOG BOX FOR USER  FIRST TO AGREE UPON TERMS AND CONDITIONS, THEN WILL REGISTER
 
-                  ElevatedButton(
+              ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: tPrimaryColor,
@@ -133,9 +133,9 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                           builder: (context, setState) {
                             return AlertDialog(
                                 title:
-                                    Center(child: Text("Terms & Conditions")),
+                                Center(child: Text("Terms & Conditions")),
                                 insetPadding:
-                                    EdgeInsets.symmetric(horizontal: 20),
+                                EdgeInsets.symmetric(horizontal: 20),
                                 titleTextStyle: TextStyle(
                                     color: tPrimaryColor,
                                     fontSize: 20,
@@ -231,7 +231,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                                       controller.email.text.trim(),
                                                       controller.password.text.trim(),
                                                       controller.phoneNo.text.trim(),
-                                                  "true" //newsLetterSubscription
+                                                      "true" //newsLetterSubscription
                                                   );
 
                                                 }
@@ -255,14 +255,14 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                                 //USED PACKAGE TO GENERATE THIS TOAST
                                                 Fluttertoast.showToast(
                                                     msg:
-                                                        "To Signup, please agree with Terms and Conditions",
+                                                    "To Signup, please agree with Terms and Conditions",
                                                     toastLength:
-                                                        Toast.LENGTH_SHORT,
+                                                    Toast.LENGTH_SHORT,
                                                     gravity:
-                                                        ToastGravity.CENTER,
+                                                    ToastGravity.CENTER,
                                                     timeInSecForIosWeb: 1,
                                                     backgroundColor:
-                                                        tPrimaryColor,
+                                                    tPrimaryColor,
                                                     textColor: Colors.white,
                                                     fontSize: 16.0);
                                               }
