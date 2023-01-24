@@ -32,7 +32,7 @@ getUsersEmailSaveAsCSV() async {
   final snapshot = await FirebaseDatabase.instance.ref('Users').get();
   final map = await snapshot.value as Map<dynamic, dynamic>;
   map.forEach((key, value) {
-    if(value['newsletterSubscription'].toString()=='true') {
+    if(value['newsletterSubscription'].toString()=='true') { //if user have subscribed to newsletter
       emailsList.add(value['email'].toString());
     }
   });
