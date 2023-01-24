@@ -32,7 +32,9 @@ getUsersEmailSaveAsCSV() async {
   final snapshot = await FirebaseDatabase.instance.ref('Users').get();
   final map = await snapshot.value as Map<dynamic, dynamic>;
   map.forEach((key, value) {
-    emailsList.add(value['email'].toString());
+    if(value['newsletterSubscription'].toString()=='true') {
+      emailsList.add(value['email'].toString());
+    }
   });
   debugPrint(emailsList.toString());//list of all user's emails present in database
   Map<Permission, PermissionStatus> statuses = await [
