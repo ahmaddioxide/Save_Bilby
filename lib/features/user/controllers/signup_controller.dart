@@ -25,7 +25,7 @@ class SignUpController extends GetxController {
 
   final userRepo = Get.put(UserRepository());
 
-  void signUp(String username, String email, String password, String Phone)async{
+  void signUp(String username, String email, String password, String Phone,String newsletterSubscription)async{
 
     FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -48,6 +48,7 @@ class SignUpController extends GetxController {
           'Phone' : Phone,
           'RewardPoints': Reward,
           'ImageCategorized': imgCategorize,
+          'newsletterSubscription': newsletterSubscription
         });
 
 

@@ -15,7 +15,7 @@ class SignUpFormWidget extends StatefulWidget {
 }
 
 bool isChecked = false;
-bool PrivacyChecked = false;
+bool newsletterSubscription = false;
 bool letterChecked = false;
 
 class _SignUpFormWidgetState extends State<SignUpFormWidget> {
@@ -203,14 +203,14 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                           Checkbox(
                                               activeColor: tPrimaryColor,
                                               checkColor: Colors.white,
-                                              value: PrivacyChecked,
+                                              value: newsletterSubscription,
                                               onChanged: ((bool? value) {
                                                 setState(() {
-                                                  PrivacyChecked = value!;
+                                                  newsletterSubscription = value!;
                                                 });
                                               })),
                                           Text(
-                                            'I agree with the Privacy Policy',
+                                            'I want to subscribe to newsletters',
                                             style: TextStyle(
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.bold),
@@ -222,16 +222,41 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                             style: ElevatedButton.styleFrom(
                                                 backgroundColor: tPrimaryColor),
                                             onPressed: (() {
-                                              if (isChecked == true &&
-                                                  PrivacyChecked == true) {
+                                              if (isChecked == true &&newsletterSubscription==true ) {
                                                 Navigator.of(context)
                                                     .pop(AlertDialog);
-                                              } else {
+                                                if (_formkey.currentState!.validate()) {
+                                                  SignUpController.instance.signUp(
+                                                      controller.fullName.text.trim(),
+                                                      controller.email.text.trim(),
+                                                      controller.password.text.trim(),
+                                                      controller.phoneNo.text.trim(),
+                                                  "true" //newsLetterSubscription
+                                                  );
+
+                                                }
+
+                                              }
+                                              if (isChecked == true &&newsletterSubscription==false ) {
+                                                Navigator.of(context)
+                                                    .pop(AlertDialog);
+                                                if (_formkey.currentState!.validate()) {
+                                                  SignUpController.instance.signUp(
+                                                      controller.fullName.text.trim(),
+                                                      controller.email.text.trim(),
+                                                      controller.password.text.trim(),
+                                                      controller.phoneNo.text.trim(),
+                                                      "false" //newsLetterSubscription
+                                                  );
+
+                                                }
+
+                                              }else {
                                                 //USED PACKAGE TO GENERATE THIS TOAST
 
                                                 Fluttertoast.showToast(
                                                     msg:
-                                                        "Kindly check the terms ,conditions and privacy checks",
+                                                        "To Signup, please agree with Terms and Conditions",
                                                     toastLength:
                                                         Toast.LENGTH_SHORT,
                                                     gravity:
@@ -266,13 +291,6 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                         );
                       }));
 
-                  if (_formkey.currentState!.validate()) {
-                    SignUpController.instance.signUp(
-                        controller.fullName.text.trim(),
-                        controller.email.text.trim(),
-                        controller.password.text.trim(),
-                        controller.phoneNo.text.trim());
-                  }
                 },
                 child: Text(tSignup.toUpperCase()),
               ),
