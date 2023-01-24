@@ -66,7 +66,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.email_outlined),
                 labelText: tEmail,
-                hintText: tEmail,
+                  hintText: tEmail,
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               ),
@@ -100,7 +100,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                 if (value.trim().length < 6) {
                   return 'Password must be at least 6 characters in length';
                 }
-                // Return null if the entered password is valid
+                  // Return null if the entered password is valid
                 return null;
               },
               decoration: InputDecoration(
@@ -134,7 +134,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                             return AlertDialog(
                                 title:
                                     Center(child: Text("Terms & Conditions")),
-                                insetPadding:
+  insetPadding:
                                     EdgeInsets.symmetric(horizontal: 20),
                                 titleTextStyle: TextStyle(
                                     color: tPrimaryColor,
@@ -165,7 +165,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    Text(
+ Text(
                                       "We need to run this project to help us cope with a continuous flood of photos from field cameras at Currawinya National Park and on private land in Queensland. At this stage there is no AI that can categorise the photos, so we need human eyes.Not only will this enable us to be alerted to sightings of both bilbies, and feral pests, but it will also add to our knowledge of the species sharing the environment with the bilbies.The major goal for this project is for the analysed data to be available to our researcher for use, modification and redistribution in order to further scientific research. Therefore, if you contribute to the ID App, you grant us and our collaborators permission to use your contributions however we like to further this goal, trusting us to do the right thing with your identification choice.Similarly, by interacting with the app and participating in photo identification, you must promise to do your very best to attribute an identification to a photo. If you are wilfully disruptive and mis-identifying photos on a regular basis you will have your access removed.You must also agree not to copy, use or distribute any of the images that are presented to you outside of the App.",
                                       strutStyle: StrutStyle(
                                         fontFamily: 'Roboto',
@@ -185,7 +185,9 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                               activeColor: tPrimaryColor,
                                               checkColor: Colors.white,
                                               value: isChecked,
-                                              onChanged: ((bool? value) {
+
+
+onChanged: ((bool? value) {
                                                 setState(() {
                                                   isChecked = value!;
                                                 });
@@ -218,7 +220,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                         ],
                                       ),
                                       Center(
-                                        child: ElevatedButton(
+child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                                 backgroundColor: tPrimaryColor),
                                             onPressed: (() {
@@ -237,7 +239,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                                 }
 
                                               }
-                                              if (isChecked == true &&newsletterSubscription==false ) {
+                                              else if (isChecked == true &&newsletterSubscription==false ) {
                                                 Navigator.of(context)
                                                     .pop(AlertDialog);
                                                 if (_formkey.currentState!.validate()) {
@@ -251,9 +253,8 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
 
                                                 }
 
-                                              }else {
+ }else if(isChecked==false){
                                                 //USED PACKAGE TO GENERATE THIS TOAST
-
                                                 Fluttertoast.showToast(
                                                     msg:
                                                         "To Signup, please agree with Terms and Conditions",
@@ -268,7 +269,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                                     fontSize: 16.0);
                                               }
                                             }),
-                                            child: Text(
+   child: Text(
                                               "Continue",
                                               style: TextStyle(
                                                   color: Colors.white),
@@ -295,18 +296,10 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                 child: Text(tSignup.toUpperCase()),
               ),
             ),
-            // Checkbox(
-            //     activeColor: tPrimaryColor,
-            //     checkColor: Colors.black,
-            //     value: isChecked,
-            //     onChanged: ((bool? value) {
-            //       setState(() {
-            //         isChecked = value!;
-            //       });
-            //     })),
+    //     })),
           ],
         ),
-      ),
-    );
-  }
+      ),
+    )
+  }
 }
