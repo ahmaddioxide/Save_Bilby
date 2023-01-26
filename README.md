@@ -1,6 +1,6 @@
 # save_the_bilby_fund
 
-Flutter App to Save bilby from extinction
+Flutter for the categorization of field camera images to spread awareness and monitor predator activities to save Bilby from extinction
 
 ## Getting Started
 
