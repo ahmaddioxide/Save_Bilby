@@ -9,8 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:external_path/external_path.dart';
 import 'package:permission_handler/permission_handler.dart';
-
-import '../../../../utils/utils.dart';
+import '../../../utils/utils.dart';
 //Controller for upload Screen
 class UploadProgressController extends GetxController {
   var imagesUploaded = 0.obs;//to check how many images have been uploaded

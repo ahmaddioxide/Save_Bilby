@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:save_the_bilby_fund/constants/colors.dart';
 import 'package:save_the_bilby_fund/features/user/screens/Category/cards_grid_widget.dart';
 import 'package:firebase_database/firebase_database.dart';
-
+import 'package:save_the_bilby_fund/features/user/screens/contactUs/contact_form.dart';
 import '../../../../utils/utils.dart';
-import '../../controllers/category_cntroller.dart';
+import '../../controllers/category_controller.dart';
 import '../../controllers/data_controller.dart';
-import '../SettingsSecreen/User_Profile.dart';
-import '../contachForm/contact_form.dart';
+import '../Profile/User_Profile.dart';
 import 'data.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -264,7 +263,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       if (snapshot.data.snapshot.value == null) {
                         // visible = false;
                         return Center(
-                          child: Text("No more images to show :)\nNew images will be available soon.\nSee you later fella!"),
+                          child: Text(
+                              "No more images to show :)\nNew images will be available soon.\nSee you later fella!"),
                         );
                       } else {
                         var keys = snapshot.data.snapshot.value.keys;
@@ -282,7 +282,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                             ImageController().imageleft = false;
 
                             return Center(
-                              child: Text("No more images to show :)\nNew images will be available soon.\nSee you later fella!"),
+                              child: Text(
+                                  "No more images to show :)\nNew images will be available soon.\nSee you later fella!"),
                             );
                           } else {
                             ImageURL = datalist[count].imgurl;
@@ -318,7 +319,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         }
 
                         // Map<dynamic, dynamic> map = snapshot.data.snapshot.value;
-
                       }
                     } else
                       return SizedBox(

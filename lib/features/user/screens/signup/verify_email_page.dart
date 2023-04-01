@@ -8,7 +8,7 @@ import 'package:save_the_bilby_fund/utils/utils.dart';
 
 import '../../../../constants/colors.dart';
 import '../../controllers/session_controller.dart';
-import '../Category/navigation.dart';
+import '../navigation.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({Key? key}) : super(key: key);

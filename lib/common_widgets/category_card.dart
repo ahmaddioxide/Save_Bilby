@@ -4,7 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../features/user/controllers/category_cntroller.dart';
+import '../features/user/controllers/category_controller.dart';
 import '../features/user/controllers/data_controller.dart';
 import '../features/user/controllers/session_controller.dart';
 import '../utils/utils.dart';

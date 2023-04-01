@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:save_the_bilby_fund/features/user/controllers/session_controller.dart';
 import 'package:save_the_bilby_fund/features/user/screens/login/login_screen.dart';
 import 'package:save_the_bilby_fund/constants/colors.dart';
-import '../Category/navigation.dart';
+import '../navigation.dart';
 import '../signup/verify_email_page.dart';
 
 // In Splash screen we initialized firebase authentication and check if user already loggedin then it will take him to Home screen

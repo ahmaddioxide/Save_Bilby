@@ -33,7 +33,7 @@ class _LoginFormState extends State<LoginForm> {
               controller: controller.emailController,
               validator: (value) {
                 bool _isEmailValid = RegExp(
-                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                     .hasMatch(value!);
                 if (!_isEmailValid) {
                   return 'Invalid email.';
@@ -46,11 +46,10 @@ class _LoginFormState extends State<LoginForm> {
                 labelText: tEmail,
                 hintText: tEmail,
                 border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               ),
             ),
             const SizedBox(height: tFormHeight - 10),
-
             TextFormField(
               controller: controller.passwordController,
               validator: (value) {
@@ -64,10 +63,6 @@ class _LoginFormState extends State<LoginForm> {
                 return null;
               },
               obscureText: _isObscure,
-
-
-
-
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                     icon: Icon(
@@ -77,14 +72,11 @@ class _LoginFormState extends State<LoginForm> {
                         _isObscure = !_isObscure;
                       });
                     }),
-
-
-
                 prefixIcon: Icon(Icons.fingerprint),
                 labelText: tPassword,
                 hintText: tPassword,
                 border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               ),
             ),
             const SizedBox(height: tFormHeight - 20),
@@ -120,9 +112,6 @@ class _LoginFormState extends State<LoginForm> {
                         controller.emailController.text.toString(),
                         controller.passwordController.text.trim());
                   }
-
-
-
                 },
                 child: Text(tLogin.toUpperCase()),
               ),
@@ -133,7 +122,3 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 }
-
-
-
-

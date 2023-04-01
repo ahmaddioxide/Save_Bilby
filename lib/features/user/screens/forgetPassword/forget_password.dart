@@ -1,14 +1,11 @@
-
 import 'package:flutter/material.dart';
-
 import '../../../../common_widgets/form/form_footer.dart';
 import '../../../../constants/sizes.dart';
 import '../../../../constants/text_strings.dart';
 import '../custom_appbar.dart';
 import 'forgrt_pass_form.dart';
 
-
-class ForgetPassword extends StatelessWidget  {
+class ForgetPassword extends StatelessWidget {
   const ForgetPassword({Key? key}) : super(key: key);
 
   @override
@@ -23,9 +20,8 @@ class ForgetPassword extends StatelessWidget  {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
-
               ForgetFormWidget(),
-              FooterWidget(Texts: tDontHaveAnAccount,Title: tSignup),
+              FooterWidget(Texts: tDontHaveAnAccount, Title: tSignup),
             ],
           ),
         ),
