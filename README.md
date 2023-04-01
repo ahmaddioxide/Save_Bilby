@@ -1,7 +1,7 @@
 # Save Bilby App
 
 Save Bilby App is a mobile application built with Flutter and Firebase to help save the Bilby species from extinction by categorizing field camera images and monitoring predator activities. It also utilizes EmailJS API to send email notifications regarding predator activities, enabling rapid response and monitoring.
-
+Admin.png
 ## Features
 
 - Categorize field camera images
